@@ -7,6 +7,7 @@ alias -- -="cd -"
 
 # List all files colorized in long format
 alias l="ls -lFG"
+alias ls="ls -G"
 
 # List all files colorized in long format, excluding . and ..
 alias la="ls -lAFG"
@@ -15,7 +16,6 @@ alias rl="source ~/.zprofile"
 alias cls=clear
 alias clip="tr -d '\n' | pbcopy"
 alias rep="cd ~/Repos"
-cdls() { cd "$@" && ls; }
 
 # Grep
 alias grep='grep --color=auto'
@@ -35,7 +35,6 @@ alias glom="git pull origin main"
 alias v=nvim
 alias vi=nvim
 alias vim=nvim
-vscp() { nvim scp://"$1"/~/"$2"; }
 
 # * Node
 alias npm=pnpm

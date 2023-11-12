@@ -1,5 +1,8 @@
-# Copy .zaliases to ~
-cp .zaliases ~
+# Copy the files to the home directory
+cp .zprofile ~/
+cp .zaliases ~/
+cp .zfunctions ~/
 
-# Copy .zprofile to ~
-cp .zprofile ~
+# git files
+cp .gitconfig ~/
+cp .gitignore ~/
