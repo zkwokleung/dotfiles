@@ -1,0 +1,49 @@
+# * System
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+alias -- -="cd -"
+
+# List all files colorized in long format
+alias l="ls -lFG"
+
+# List all files colorized in long format, excluding . and ..
+alias la="ls -lAFG"
+
+alias rl="source ~/.zprofile"
+alias cls=clear
+alias clip="tr -d '\n' | pbcopy"
+alias rep="cd ~/Repos"
+cdls() { cd "$@" && ls; }
+
+# Grep
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+
+# * Git
+alias g=git
+alias gs="git status"
+alias gl="git log"
+alias gf="git fetch"
+alias gcm="git commit -m"
+alias gpom="git push origin main"
+alias glom="git pull origin main"
+
+# * Vim 
+alias v=nvim
+alias vi=nvim
+alias vim=nvim
+vscp() { nvim scp://"$1"/~/"$2"; }
+
+# * Node
+alias npm=pnpm
+
+# * CUHK
+alias licse="ssh klszeto1@linux8.cse.cuhk.edu.hk"
+# CSCI4180
+alias li4180="ssh -p 13008 hadoop@projgw.cse.cuhk.edu.hk"
+alias scp4180='f () { scp -P 13008 -r "$1" hadoop@projgw.cse.cuhk.edu.hk:~/; unset -f f }; f'
+# CENG4480
+alias li4480="ssh klszeto1@192.168.0.104"
