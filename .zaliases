@@ -15,7 +15,7 @@ alias la="ls -lAFG"
 alias rl="source ~/.zprofile"
 alias cls=clear
 alias clip="tr -d '\n' | pbcopy"
-alias rep="cd ~/Repos"
+alias pro="cd ~/Projects"
 
 # Grep
 alias grep='grep --color=auto'
