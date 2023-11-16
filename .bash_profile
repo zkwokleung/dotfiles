@@ -6,16 +6,16 @@ export JSON_JAVA=$HOME/Library/JSON
 export CLASSPATH=$CLASSPATH:$JSON_JAVA/json-simple-1.1.1.jar
 
 # Load alias file
-if [ -f ~/.zaliases ]; then
-  . ~/.zaliases
+if [ -f .aliases ]; then
+  . .aliases
 fi
 
 # Load functions file
-if [ -f ~/.zfunctions ]; then
-  . ~/.zfunctions
+if [ -f .functions ]; then
+  . .functions
 fi
 
 # Enter tmux on start
-if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
+if command -v tmux &>/dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
   exec tmux new-session -A -s main
 fi
