@@ -11,8 +11,20 @@ function doIt() {
         --exclude "bootstrap.sh" \
         --exclude "README.md" \
         --exclude "LICENSE-MIT.txt" \
+        --exclude ".bashrc" \
+        --exclude ".zprofile" \
         -avh --no-perms . ~
-    source ~/.bash_profile
+
+    # determine if the OS is macOS or linux
+    if [[ "$OSTYPE" == "darwin"* ]]; then
+        # macOS
+        cp .zprofile ~/.zprofile
+        source ~/.zprofile
+    elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
+        # Linux
+        cp .bashrc ~/.bashrc
+        source ~/.bashrc
+    fi
 }
 
 if [ "$1" == "--force" -o "$1" == "-f" ]; then
