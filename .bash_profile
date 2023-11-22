@@ -1,5 +1,5 @@
 # Mac only
-if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+if [[ "$OSTYPE" == "darwin"* ]]; then
   # Homebrew
   eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
