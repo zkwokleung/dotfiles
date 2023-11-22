@@ -1,5 +1,8 @@
-# Homebrew
-eval "$(/opt/homebrew/bin/brew shellenv)"
+# Mac only
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+  # Homebrew
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
 
 # Environment Variables
 export JSON_JAVA=$HOME/Library/JSON

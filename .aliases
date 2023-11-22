@@ -27,7 +27,6 @@ alias clip="tr -d '\n' | pbcopy"
 alias pro="cd ~/Projects"
 
 # Grep
-
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
@@ -48,6 +47,11 @@ alias vim=nvim
 
 # * Node
 alias npm=pnpm
+
+# * Python
+alias py=python3
+alias python=python3
+alias pip=pip3
 
 # * CUHK
 alias licse="ssh klszeto1@linux8.cse.cuhk.edu.hk"
