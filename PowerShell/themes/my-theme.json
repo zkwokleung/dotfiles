@@ -18,6 +18,7 @@
           "powerline_symbol": "\ue0b0",
           "properties": {
             "display_mode": "environment",
+            "display_default": false,
             "fetch_virtual_env": true,
             "home_enabled": true
           },
