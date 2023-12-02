@@ -5,18 +5,30 @@ function goToProjects {
 Set-Alias pro goToProjects
 
 # * cd 
-function cdPrev1 { cd .. }
-function cdPrev2 { cd ..\.. }
-function cdPrev3 { cd ..\..\.. }
-function cdPrev4 { cd ..\..\..\.. }
+function cdPrev1 { Set-Location .. }
+function cdPrev2 { Set-Location ..\.. }
+function cdPrev3 { Set-Location ..\..\.. }
+function cdPrev4 { Set-Location ..\..\..\.. }
 
-Set-Alias .. prev1
-Set-Alias ... prev2
-Set-Alias .... prev3
-Set-Alias ..... prev4
+Set-Alias .. cdPrev1
+Set-Alias ... cdPrev2
+Set-Alias .... cdPrev3
+Set-Alias ..... cdPrev4
 
 # * Systems
-function reloadProfile { . $PROFILE }
+function reloadProfile {
+    @(
+        $Profile.AllUsersAllHosts,
+        $Profile.AllUsersCurrentHost,
+        $Profile.CurrentUserAllHosts,
+        $Profile.CurrentUserCurrentHost
+    ) | ForEach-Object {
+        if (Test-Path $_) {
+            Write-Verbose "Running $_"
+            . $_
+        }
+    }    
+}
 
 Set-Alias rl reloadProfile
 

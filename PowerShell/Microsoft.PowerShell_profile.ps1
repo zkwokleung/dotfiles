@@ -9,6 +9,7 @@ oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\my-theme.json" | Invoke-Exp
 
 # Import Modules
 Import-Module Get-ChildItemColor
+Import-Module -Name Terminal-Icons
 
 # Virtual Environment
 $env:VIRTUAL_ENV_DISABLE_PROMPT = 1
