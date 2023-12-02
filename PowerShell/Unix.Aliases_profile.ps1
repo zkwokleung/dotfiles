@@ -12,4 +12,3 @@ Set-Alias clip Set-Clipboard
 Set-Alias pbcopy Set-Clipboard
 
 Set-Alias cat Get-Content
-Set-Alias grep findstr
