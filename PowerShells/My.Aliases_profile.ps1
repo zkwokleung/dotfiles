@@ -41,7 +41,7 @@ Set-Alias ga gitAdd
 Set-Alias gaa gitAddAll
 Set-Alias gcmit gitCommit
 Set-Alias gcmsg gitCommitMessage
-Set-Alias gpo gitPushOriginMain
+Set-Alias gpom gitPushOriginMain
 Set-Alias gpl gitPullOriginMain
 Set-Alias glog gitLog
 Set-Alias glg gitLogGraph
