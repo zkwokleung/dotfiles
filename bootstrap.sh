@@ -9,6 +9,8 @@ function doIt() {
         --exclude "bootstrap.sh" \
         --exclude "README.md" \
         --exclude "LICENSE-MIT.txt" \
+        --exclude ".gitignore" \
+        --exclude "PowerShell" \
         --exclude ".bashrc" \
         --exclude ".zprofile" \
         -avh --no-perms . ~
