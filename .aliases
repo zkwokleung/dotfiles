@@ -33,6 +33,9 @@ alias egrep='egrep --color=auto'
 
 # * Git
 alias g=git
+alias ga="git add"
+alias gaa="git add . && git status"
+alias gc="git commit"
 alias gs="git status"
 alias gl="git log"
 alias gf="git fetch"
