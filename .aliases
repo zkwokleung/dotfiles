@@ -14,12 +14,21 @@ else # macOS `ls`
     export LSCOLORS='BxBxhxDxfxhxhxhxhxcxcx'
 fi
 
-# List all files colorized in long format
-alias l="ls -lF ${colorflag}"
-alias ls="ls ${colorflag}"
+# Check if exa is installed
+if command -v exa &>/dev/null; then
+    alias ls='exa --icons --color=always --group-directories-first'
+    alias ll='exa -alF --icons --color=always --group-directories-first'
+    alias la='exa -a --icons --color=always --group-directories-first'
+    alias l='exa -F --icons --color=always --group-directories-first'
+    alias l.='exa -a | egrep "^\."'
+else
+    # List all files colorized in long format
+    alias l="ls -lF ${colorflag}"
+    alias ls="ls ${colorflag}"
 
-# List all files colorized in long format, excluding . and ..
-alias la="ls -lAF ${colorflag}"
+    # List all files colorized in long format, excluding . and ..
+    alias la="ls -lAF ${colorflag}"
+fi
 
 alias rl="source ~/.zprofile"
 alias cls=clear

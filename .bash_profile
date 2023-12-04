@@ -16,6 +16,9 @@ for file in ~/.{path,bash_prompt,exports,aliases,functions,extra}; do
 done
 unset file
 
+# Icons in terminal
+source ~/.local/share/icons-in-terminal/icons_bash.sh
+
 # Enter tmux on start
 if command -v tmux &>/dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
   tmux new-session -A -s main
