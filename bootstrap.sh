@@ -13,6 +13,8 @@ function doIt() {
         --exclude ".zprofile" \
         -avh --no-perms . ~
 
+    cp tmux.conf.local ~/.config/tmux/tmux.conf.local
+
     # determine if the OS is macOS or linux
     if [[ "$OSTYPE" == "darwin"* ]]; then
         # macOS
