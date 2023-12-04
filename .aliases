@@ -21,6 +21,7 @@ if command -v exa &>/dev/null; then
     alias la='exa -a --icons --color=always --group-directories-first'
     alias l='exa -F --icons --color=always --group-directories-first'
     alias l.='exa -a | egrep "^\."'
+    alias ldir='exa -d */ --icons --color=always --group-directories-first'
 else
     # List all files colorized in long format
     alias l="ls -lF ${colorflag}"
@@ -28,6 +29,9 @@ else
 
     # List all files colorized in long format, excluding . and ..
     alias la="ls -lAF ${colorflag}"
+
+    # List only directories
+    alias ldir="ls -lF ${colorflag} | grep --color=never '^d'"
 fi
 
 alias rl="source ~/.zprofile"
