@@ -16,7 +16,7 @@ function doIt() {
         --exclude ".tmux.conf.local" \
         -avh --no-perms . ~
 
-    cp .tmux.conf.local ~/.config/tmux/tmux.conf.local
+    rsync -avh .tmux.conf.local ~/.config/tmux/tmux.conf.local
 
     # determine if the OS is macOS or linux
     if [[ "$OSTYPE" == "darwin"* ]]; then
