@@ -27,6 +27,8 @@ cd PowerShell && ./bootstrap.ps1
 ## Dependencies
 ### MacOS & Unix
 - [tmux](https://github.com/tmux/tmux/wiki) with [Oh-my-tmux!](https://github.com/gpakosz/.tmux) - VERY USEFUL
+- [reattach-to-user-namespace](https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard)
+- [tpm](https://github.com/tmux-plugins/tpm) - tmux plugin manager
 - [exa](https://github.com/ogham/exa) - Better ls
 - [pnpm](https://github.com/pnpm/pnpm) - Better npm
 - [NeoVim](https://github.com/neovim/neovim) - Text Editor
