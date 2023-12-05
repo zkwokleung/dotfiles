@@ -376,7 +376,7 @@ bind k kill-pane
 bind K confirm-before -p "kill-window #W? (y/n)" kill-windowt
 
 # respawn window
-bind C-r respawn-window -k
+bind R respawn-window -k
 
 # move status line to top
 #set -g status-position top
