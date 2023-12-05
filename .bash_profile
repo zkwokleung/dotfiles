@@ -11,7 +11,7 @@ export CLASSPATH=$CLASSPATH:$JSON_JAVA/json-simple-1.1.1.jar
 # Load the shell dotfiles, and then some:
 # * ~/.path can be used to extend `$PATH`.
 # * ~/.extra can be used for other settings you don’t want to commit.
-for file in ~/.{path,exports,aliases,functions,extra,inputrc,zshrc,bash_prompt}; do
+for file in ~/.{path,bash_prompt,exports,aliases,functions,extra,inputrc,zshrc}; do
   [ -r "$file" ] && [ -f "$file" ] && source "$file"
 done
 unset file

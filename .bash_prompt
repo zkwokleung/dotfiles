@@ -1,0 +1,1 @@
+export PS1="%F{green}%n%f@%F{blue}%m%f %F{yellow}%~%f %F{cyan}%#%f "
