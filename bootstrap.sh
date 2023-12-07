@@ -3,6 +3,7 @@
 cd "$(dirname "${BASH_SOURCE}")"
 
 function doIt() {
+    printf "\e[33m%s\e[0m\n" "# Updating dotfiles..."
     rsync --exclude ".git/" \
         --exclude ".DS_Store" \
         --exclude ".osx" \
@@ -17,6 +18,7 @@ function doIt() {
         --exclude ".tmux.conf.local" \
         -avh --no-perms . ~
 
+    printf "\e[33m%s\e[0m\n" "# Updating tmux.conf.local..."
     rsync -avh .tmux.conf.local ~/.config/tmux/tmux.conf.local
 
     # determine if the OS is macOS or linux
