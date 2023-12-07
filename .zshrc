@@ -1,3 +1,5 @@
+source ~/.bash_prompt
+
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('/Users/zkwokleung/miniconda3/bin/conda' 'shell.zsh' 'hook' 2>/dev/null)"
