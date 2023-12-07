@@ -12,7 +12,6 @@ export CLASSPATH=$CLASSPATH:$JSON_JAVA/json-simple-1.1.1.jar
 # * ~/.path can be used to extend `$PATH`.
 # * ~/.extra can be used for other settings you don’t want to commit.
 for file in ~/.{path,exports,aliases,functions,extra,inputrc}; do
-  echo "Loading $file ..."
   [ -r "$file" ] && [ -f "$file" ] && source "$file"
 done
 unset file
