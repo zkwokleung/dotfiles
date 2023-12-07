@@ -12,6 +12,7 @@ function doIt() {
         --exclude ".gitignore" \
         --exclude "PowerShell" \
         --exclude ".bashrc" \
+        --exclude ".zshrc" \
         --exclude ".zprofile" \
         --exclude ".tmux.conf.local" \
         -avh --no-perms . ~
@@ -21,8 +22,8 @@ function doIt() {
     # determine if the OS is macOS or linux
     if [[ "$OSTYPE" == "darwin"* ]]; then
         # macOS
-        cp .zprofile ~/.zprofile
-        source ~/.zprofile
+        cp .zprofile ~/.zshrc
+        source ~/.zshrc
     elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
         # Linux
         cp .bashrc ~/.bashrc
