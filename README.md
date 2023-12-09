@@ -28,6 +28,7 @@ cd PowerShell && ./bootstrap.ps1
 ### MacOS & Unix
 - [tmux](https://github.com/tmux/tmux/wiki) with [Oh-my-tmux!](https://github.com/gpakosz/.tmux) - VERY USEFUL
 - [reattach-to-user-namespace](https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard)
+- [Gitmux](https://github.com/arl/gitmux) - Showing the git repos status in the tmux status bar
 - [tpm](https://github.com/tmux-plugins/tpm) - tmux plugin manager
 - [exa](https://github.com/ogham/exa) - Better ls
 - [pnpm](https://github.com/pnpm/pnpm) - Better npm

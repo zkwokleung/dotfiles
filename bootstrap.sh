@@ -16,10 +16,12 @@ function doIt() {
         --exclude ".zshrc" \
         --exclude ".zprofile" \
         --exclude ".tmux.conf.local" \
+        --exclude ".gitmux.yaml" \
         -avh --no-perms . ~
 
-    printf "\e[33m%s\e[0m\n" "# Updating tmux.conf.local..."
+    printf "\e[33m%s\e[0m\n" " # Updating tmux.conf.local..."
     rsync -avh .tmux.conf.local ~/.config/tmux/tmux.conf.local
+    rsync -avh .gitmux.yaml ~/.config/tmux/gitmux.conf
 
     # determine if the OS is macOS or linux
     if [[ "$OSTYPE" == "darwin"* ]]; then
