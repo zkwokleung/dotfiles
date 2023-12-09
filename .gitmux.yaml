@@ -1,41 +1,50 @@
-# * Symbols
-symbols:
-    branch: "⎇ "    # current branch name.
-    hashprefix: ":"  # Git SHA1 hash (in 'detached' state).
-    ahead: ↑·        # 'ahead count' when local and remote branch diverged.
-    behind: ↓·       # 'behind count' when local and remote branch diverged.
-    staged: "● "     # count of files in the staging area.
-    conflict: "✖ "   # count of files in conflicts.
-    modified: "✚ "   # count of modified files.
-    untracked: "… "  # count of untracked files.
-    stashed: "⚑ "    # count of stash entries.
-    insertions: Σ    # count of inserted lines (stats section).
-    deletions: Δ     # count of deleted lines (stats section).
-    clean: ✔         # Shown when the working tree is clean.
+tmux:
+  # * Symbols
+  symbols:
+    branch: " " # current branch name.
+    hashprefix: ":" # Git SHA1 hash (in 'detached' state).
+    ahead: ↑· # 'ahead count' when local and remote branch diverged.
+    behind: ↓· # 'behind count' when local and remote branch diverged.
+    staged: "󰴅 " # count of files in the staging area.
+    conflict: "󱒼 " # count of files in conflicts.
+    modified: "󰲶 " # count of modified files.
+    untracked: "… " # count of untracked files.
+    stashed: "󱝐 " # count of stash entries.
+    insertions: 󰐕 # count of inserted lines (stats section).
+    deletions:  # count of deleted lines (stats section).
+    clean: ✔ # Shown when the working tree is clean.
 
-# * Styles
-styles:
-  clear: '#[fg=default]'          # Clear previous style.
-  state: '#[fg=red,bold]'         # Special tree state strings such as [rebase], [merge], etc.
-  branch: '#[fg=white,bold]'      # Local branch name
-  remote: '#[fg=cyan]'            # Remote branch name
-  divergence: "#[fg=yellow]"      # 'divergence' counts
-  staged: '#[fg=green,bold]'      # 'staged' count
-  conflict: '#[fg=red,bold]'      # 'conflicts' count
-  modified: '#[fg=red,bold]'      # 'modified' count
-  untracked: '#[fg=magenta,bold]' # 'untracked' count
-  stashed: '#[fg=cyan,bold]'      # 'stash' count
-  insertions: '#[fg=green]'       # 'insertions' count
-  deletions: '#[fg=red]'          # 'deletions' count
-  clean: '#[fg=green,bold]'       # 'clean' symbol
+  # * Styles
+  styles:
+    clear: "#[fg=default]" # Clear previous style.
+    state: "#[fg=red,bold]" # Special tree state strings such as [rebase], [merge], etc.
+    branch: "#[fg=white,bold]" # Local branch name
+    remote: "#[fg=cyan]" # Remote branch name
+    divergence: "#[fg=yellow]" # 'divergence' counts
+    staged: "#[fg=green,bold]" # 'staged' count
+    conflict: "#[fg=red,bold]" # 'conflicts' count
+    modified: "#[fg=yellow,bold]" # 'modified' count
+    untracked: "#[fg=magenta,bold]" # 'untracked' count
+    stashed: "#[fg=#AA5500]" # 'stash' count
+    insertions: "#[fg=green]" # 'insertions' count
+    deletions: "#[fg=red]" # 'deletions' count
+    clean: "#[fg=green,bold]" # 'clean' symbol
 
-#  * Layout
-# Keywords:
-#   - branch: current branch name.
-#   - remote-branch: remote branch name.
-#   - divergence: 'divergence' counts.
-#   - remote: remote name.
-#   - flags: 'staged', 'conflicts', 'modified', 'untracked', 'stash', 'insertions', 'deletions', 'clean'.
-#   - stats: 'insertions', 'deletions'.
-  
-layout: [branch, .., remote-branch, divergence, " - ", flags]
+  #  * Layout
+  # Keywords:
+  #   - branch: current branch name.
+  #   - remote-branch: remote branch name.
+  #   - divergence: 'divergence' counts.
+  #   - remote: remote name.
+  #   - flags: 'staged', 'conflicts', 'modified', 'untracked', 'stash', 'insertions', 'deletions', 'clean'.
+  #   - stats: 'insertions', 'deletions'.
+
+  layout: [branch, divergence, flags]
+
+  # * Options
+  options:
+    branch_max_len: 0
+    branch_trim: right
+    ellipsis: …
+    hide_clean: false
+    swap_divergence: false
