@@ -379,11 +379,8 @@ bind C-a send-prefix
 # if you don't want Oh my tmux! to alter a binding, use #!important
 # bind c new-window -c '#{pane_current_path}' #!important
 
-# kill pane
-bind k kill-pane
-
 # kill window
-bind K confirm-before -p "kill-window #W? (y/n)" kill-windowt
+bind X confirm-before -p "kill-window #W? (y/n)" kill-windowt
 
 # respawn window
 bind R respawn-window -k
