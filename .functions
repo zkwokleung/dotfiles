@@ -23,3 +23,10 @@ function o() {
 function tre() {
 	tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@" | less -FRNX
 }
+
+function :q() {
+	for i in {30..37}; do
+		# Display hello message
+		echo -e "\e[00;${i}mYOU ARE NOT USING VIM!!!!!!!!\e[00m"
+	done
+}
