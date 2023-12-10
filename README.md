@@ -37,6 +37,12 @@ cd PowerShell && ./bootstrap.ps1
 - [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions/tree/master)
 - [zsh-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting/tree/master)
 
+### NeoVim
+- [lazy](https://github.com/folke/lazy.nvim) - Plugin Manager
+- [manson](https://github.com/williamboman/mason.nvim) - Package Manager
+- [wilder](https://github.com/gelguy/wilder.nvim) - Command Autocomplete
+- [tokyonight](https://github.com/folke/tokyonight.nvim) - Theme
+
 ### PowerShell
 - [PowerShell](https://apps.microsoft.com/detail/9MZ1SNWT0N5D)
 - [Oh-My-Posh](https://github.com/JanDeDobbeleer/oh-my-posh) - Makes the terminal looks nicer
