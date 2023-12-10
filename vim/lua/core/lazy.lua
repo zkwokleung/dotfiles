@@ -1,0 +1,94 @@
+require("lazy").setup(
+    {
+        -- Package Manager
+        {
+            "williamboman/mason.nvim",
+        },
+
+        -- LSP
+        {
+            "williamboman/mason-lspconfig.nvim",
+            dependencies = {
+                "neovim/nvim-lspconfig",
+            },
+            lazy = false,
+        },
+
+        -- DAP
+        {
+            "mfussenegger/nvim-dap",
+            dependencies = {
+                "theHamsta/nvim-dap-virtual-text",
+                "rcarriga/nvim-dap-ui",
+                "mfussenegger/nvim-dap-python",
+                "Pocco81/DAPInstall.nvim",
+            },
+        },
+
+        -- Lint
+        {
+            "mfussenegger/nvim-lint",
+        },
+
+        -- Formatter
+        {
+            "mhartington/formatter.nvim",
+        },
+
+        -- UI
+        {
+            "nvim-treesitter/nvim-treesitter",
+            build = ":TSUpdate",
+        },
+        {
+            "nvim-neo-tree/neo-tree.nvim",
+            branch = "v3.x",
+            dependencies = {
+                "nvim-lua/plenary.nvim",
+                "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+                "MunifTanjim/nui.nvim",
+                -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
+            }
+        },
+        {
+            "rcarriga/nvim-notify",
+        },
+
+        -- Completion
+        {
+            "gelguy/wilder.nvim",
+            dependencies = {
+                "nvim-tree/nvim-web-devicons",
+            },
+            lazy = false,
+        },
+
+        -- Snippet
+        {
+            "L3MON4D3/LuaSnip",
+            version = "v2.*",
+            -- install jsregexp (optional!).
+            -- build = "make install_jsregexp"
+        },
+        {
+            "hrsh7th/nvim-cmp",
+            dependencies = {
+                "hrsh7th/cmp-buffer",
+                "hrsh7th/cmp-nvim-lsp",
+                "hrsh7th/cmp-path",
+                "hrsh7th/cmp-nvim-lua",
+                "hrsh7th/cmp-vsnip",
+                "neovim/nvim-lspconfig",
+                "L3MON4D3/LuaSnip",
+                "saadparwaiz1/cmp_luasnip"
+            },
+        },
+
+        -- Theme
+        {
+            "folke/tokyonight.nvim",
+            lazy = false,
+            priority = 1000,
+        }
+    }
+)

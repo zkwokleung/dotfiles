@@ -1,0 +1,5 @@
+return {
+    filters = {
+        fotfiles = true
+    }
+}

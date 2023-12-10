@@ -4,12 +4,12 @@ end
 
 -- Load my configs
 for _, config in ipairs {
-    'custom/bootstrap',
-    'custom/options',
-    'custom/lazy',
-    'custom/plugins',
-    'custom/autocmd',
-    'custom/mappings'
+    'core/bootstrap',
+    'core/options',
+    'core/lazy',
+    'core/plugins',
+    'core/autocmd',
+    'core/mappings'
 } do
     require(config)
 end

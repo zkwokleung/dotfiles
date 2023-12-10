@@ -38,8 +38,10 @@ cd PowerShell && ./bootstrap.ps1
 - [zsh-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting/tree/master)
 
 ### NeoVim
-- [lazy](https://github.com/folke/lazy.nvim) - Plugin Manager
-- [manson](https://github.com/williamboman/mason.nvim) - Package Manager
+- [lazy](https://github.com/folke/lazy.nvim) - Plugin manager
+- [manson](https://github.com/williamboman/mason.nvim) - Package manager
+- [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) - Syntax highlight
+- [nvim-dap](https://github.com/rcarriga/nvim-dap-ui) - Debugger
 - [wilder](https://github.com/gelguy/wilder.nvim) - Command Autocomplete
 - [tokyonight](https://github.com/folke/tokyonight.nvim) - Theme
 
