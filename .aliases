@@ -40,10 +40,14 @@ else
     alias ldir="ls -lF ${colorflag} | grep --color=never '^d'"
 fi
 
+# Misc
 alias rl="source ~/.zprofile"
 alias cls=clear
 alias clip="tr -d '\n' | pbcopy"
+
+# Shortcuts
 alias pro="cd ~/Projects && ls"
+alias gdz="cd ~/Library/CloudStorage/GoogleDrive-zkwokleung@gmail.com/My\ Drive && ls"
 
 # Grep
 alias grep='grep --color=auto'
