@@ -4,6 +4,9 @@ require("lazy").setup(
         {
             "williamboman/mason.nvim",
         },
+        {
+            "WhoIsSethDaniel/mason-tool-installer.nvim",
+        },
 
         -- LSP
         {
@@ -62,11 +65,13 @@ require("lazy").setup(
 
         -- Completion
         {
-            "gelguy/wilder.nvim",
+            "folke/noice.nvim",
+            event = "VeryLazy",
             dependencies = {
-                "nvim-tree/nvim-web-devicons",
+                -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+                "MunifTanjim/nui.nvim",
+                "rcarriga/nvim-notify",
             },
-            lazy = false,
         },
 
         -- Snippet
@@ -93,6 +98,10 @@ require("lazy").setup(
             "folke/tokyonight.nvim",
             lazy = false,
             priority = 1000,
+        },
+
+        {
+            "github/copilot.vim"
         }
     }
 )

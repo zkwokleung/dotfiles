@@ -1,15 +1,4 @@
-local lsps = {
-    'clangd',
-    'cmake',
-    'cssls',
-    'csharp_ls',
-    'java_language_server',
-    'denols',
-    'bashls',
-    'pyright',
-    'grammarly',
-    'tsserver',
-}
+local lsps = require('lang.requirements').lsps
 
 require("mason-lspconfig").setup({
     ensure_installed = lsps,

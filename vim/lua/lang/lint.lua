@@ -1,29 +1,4 @@
-local linters_by_ft = {
-    bash = { 'fish' },
-    c = { 'clangtidy' },
-    cpp = { 'clangtidy' },
-    css = { 'stylelint' },
-    html = { 'tidy' },
-    java = { 'spotless' },
-    javascript = { 'eslint' },
-    javascriptreact = { 'eslint' },
-    json = { 'jsonlint' },
-    lua = { 'luacheck' },
-    make = { 'checkmake' },
-    markdown = { 'markdownlint' },
-    python = { 'flake8' },
-    rust = { 'rustfmt', 'clippy' },
-    sass = { 'stylelint' },
-    scss = { 'stylelint' },
-    sh = { 'shellcheck' },
-    typescript = { 'eslint' },
-    typescriptreact = { 'eslint' },
-    vim = { 'vint' },
-    yaml = { 'yamllint' },
-    zsh = { 'fish' },
-}
-
-require('lint').linters_by_ft = linters_by_ft
+local linters_by_ft = require('lang.requirements').linters_by_ft
 
 -- Sort the table in ascending order
 local sorted_linters_by_ft = {}
@@ -37,3 +12,5 @@ linters_by_ft = {}
 for _, v in ipairs(sorted_linters_by_ft) do
     linters_by_ft[v[1]] = v[2]
 end
+
+require('lint').linters_by_ft = linters_by_ft

@@ -25,6 +25,10 @@ local ui = {
     'ui/statusline',
 }
 
+local helper = {
+    'helper/copilot'
+}
+
 -- Load my configs
 
 for _, v in ipairs(core) do
@@ -36,5 +40,9 @@ for _, v in ipairs(lang) do
 end
 
 for _, v in ipairs(ui) do
+    require(v)
+end
+
+for _, v in ipairs(helper) do
     require(v)
 end
