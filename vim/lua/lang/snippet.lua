@@ -48,8 +48,13 @@ cmp.setup.cmdline({ '/', '?' }, {
 cmp.setup.cmdline(':', {
     mapping = cmp.mapping.preset.cmdline(),
     sources = cmp.config.sources({
-        { name = 'path' }
-    }, {
-        { name = 'cmdline' }
+        { name = 'nvim_lsp' },
+        { name = 'nvim_lua' },
+        { name = 'vsnip' },
+        { name = 'nvim_lsp_signature_help' },
+        { name = 'calc' },
+        { name = 'path' },
+        { name = 'buffer' },
+        { name = 'cmdline' },
     })
 })

@@ -23,6 +23,7 @@ local ui = {
     'ui/theme',
     'ui/tree',
     'ui/statusline',
+    'ui/commandbar',
 }
 
 local helper = {

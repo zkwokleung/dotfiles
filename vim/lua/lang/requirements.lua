@@ -5,7 +5,6 @@ M.lsps = {
     'cmake',
     'cssls',
     'csharp_ls',
-    'java_language_server',
     'denols',
     'bashls',
     'pyright',
