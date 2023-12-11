@@ -44,6 +44,7 @@ cd PowerShell && ./bootstrap.ps1
 - [nvim-dap](https://github.com/rcarriga/nvim-dap-ui) - Debugger
 - [wilder](https://github.com/gelguy/wilder.nvim) - Command Autocomplete
 - [tokyonight](https://github.com/folke/tokyonight.nvim) - Theme
+- [copilot.vim](https://github.com/github/copilot.vim) - Copilot
 
 ### PowerShell
 - [PowerShell](https://apps.microsoft.com/detail/9MZ1SNWT0N5D)

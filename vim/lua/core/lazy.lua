@@ -37,6 +37,9 @@ require("lazy").setup(
 
         -- UI
         {
+            'goolord/alpha-nvim',
+        },
+        {
             "nvim-treesitter/nvim-treesitter",
             build = ":TSUpdate",
         },
@@ -52,6 +55,9 @@ require("lazy").setup(
         },
         {
             "rcarriga/nvim-notify",
+        },
+        {
+            "nvim-lualine/lualine.nvim",
         },
 
         -- Completion

@@ -13,3 +13,12 @@ for _, config in ipairs {
 } do
     require(config)
 end
+
+-- Load UI configs
+for _, config in ipairs {
+    'ui/dashboard',
+    'ui/theme',
+    'ui/tree',
+} do
+    require(config)
+end
