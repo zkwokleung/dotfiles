@@ -73,6 +73,9 @@ require("lazy").setup(
                 "rcarriga/nvim-notify",
             },
         },
+        {
+            "jiangmiao/auto-pairs",
+        },
 
         -- Snippet
         {
