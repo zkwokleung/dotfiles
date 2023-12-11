@@ -1,3 +1,4 @@
+local lsp = require('lspconfig')
 local lsps = require('lang.requirements').lsps
 
 require("mason-lspconfig").setup({
