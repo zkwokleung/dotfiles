@@ -104,6 +104,10 @@ require("lazy").setup(
             priority = 1000,
         },
 
+        -- Make your life easier
+        {
+            "junegunn/fzf",
+        },
         {
             "github/copilot.vim"
         }

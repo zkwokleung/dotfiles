@@ -53,6 +53,7 @@ M.fmts = {
     'latexindent',
     'autoflake',
     'shfmt',
+    'stylua',
 }
 
 M.all = {}
