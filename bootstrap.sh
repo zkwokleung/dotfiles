@@ -10,13 +10,14 @@ function doIt() {
         --exclude "bootstrap.sh" \
         --exclude "README.md" \
         --exclude "LICENSE-MIT.txt" \
-        --exclude ".gitignore" \
         --exclude "PowerShell" \
         --exclude ".bashrc" \
         --exclude ".zshrc" \
         --exclude ".zprofile" \
         --exclude ".tmux.conf.local" \
         --exclude ".gitmux.yaml" \
+        --exclude "vim" \
+        --exclude ".trunk" \
         -avh --no-perms . ~
 
     printf "\e[33m%s\e[0m\n" " # Updating tmux.conf.local..."

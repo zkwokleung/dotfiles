@@ -16,3 +16,6 @@ esac
 
 # zsh-completions
 export FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+
+# fzf
+export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -l -g ""'
