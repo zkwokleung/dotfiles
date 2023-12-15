@@ -108,7 +108,13 @@ require("lazy").setup({
 
 	-- Make your life easier
 	{
+		"preservim/nerdcommenter",
+	},
+	{
 		"junegunn/fzf",
+	},
+	{
+		"romgrk/barbar.nvim",
 	},
 	{
 		"github/copilot.vim",
