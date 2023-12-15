@@ -37,6 +37,9 @@ require("lazy").setup(
         {
             "mhartington/formatter.nvim",
         },
+        {
+            "vim-autoformat/vim-autoformat",
+        },
 
         -- UI
         {
