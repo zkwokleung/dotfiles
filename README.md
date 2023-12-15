@@ -36,6 +36,7 @@ cd PowerShell && ./bootstrap.ps1
 - [zsh-completions](https://github.com/zsh-users/zsh-completions)
 - [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions/tree/master)
 - [zsh-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting/tree/master)
+- [fzf](https://github.com/junegunn/fzf)
 
 ### NeoVim
 - [lazy](https://github.com/folke/lazy.nvim) - Plugin manager
