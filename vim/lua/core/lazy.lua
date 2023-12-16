@@ -81,6 +81,10 @@ require("lazy").setup({
 	{
 		"jiangmiao/auto-pairs",
 	},
+	{
+		"neoclide/coc.nvim",
+		branch = "release",
+	},
 
 	-- Snippet
 	{
@@ -112,6 +116,10 @@ require("lazy").setup({
 	-- Make your life easier
 	{
 		"preservim/nerdcommenter",
+	},
+	{
+		"mg979/vim-visual-multi",
+		branch = "master",
 	},
 	{
 		"junegunn/fzf",

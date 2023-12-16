@@ -58,6 +58,7 @@ cd PowerShell && ./bootstrap.ps1
 -   [wilder](https://github.com/gelguy/wilder.nvim) - Command Autocomplete
 -   [tokyonight](https://github.com/folke/tokyonight.nvim) - Theme
 -   [copilot.vim](https://github.com/github/copilot.vim) - Copilot
+-   [Conquer of Completion](https://github.com/neoclide/coc.nvim) - Snippet for vim
 
 ### PowerShell
 
