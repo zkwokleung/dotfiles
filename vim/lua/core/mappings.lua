@@ -1,6 +1,20 @@
 local map = vim.keymap.set
 local opts = { noremap = true, silent = true }
 
+-- Delete without yanking
+map("n", "<Leader>d", '"_d', opts)
+
+-- Move lines up and down
+map("n", "<A-j>", ":m .+1<CR>==", opts)
+map("n", "<A-k>", ":m .-2<CR>==", opts)
+map("i", "<A-j>", "<Esc>:m .+1<CR>==gi", opts)
+map("i", "<A-k>", "<Esc>:m .-2<CR>==gi", opts)
+map("v", "<A-j>", ":m '>+1<CR>gv=gv", opts)
+map("v", "<A-k>", ":m '<-2<CR>gv=gv", opts)
+
+-- ALE fix
+map("n", "<Leader>?", ":ALEFixSuggest<CR>", opts)
+
 -- barbar tabline
 -- Move to previous/next
 map("n", "<Leader>,", ":BufferPrevious<CR>", opts)

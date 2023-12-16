@@ -31,6 +31,9 @@ require("lazy").setup({
 	{
 		"mfussenegger/nvim-lint",
 	},
+	{
+		"dense-analysis/ale",
+	},
 
 	-- Formatter
 	{
