@@ -31,9 +31,6 @@ require("lazy").setup({
 	{
 		"mfussenegger/nvim-lint",
 	},
-	{
-		"dense-analysis/ale",
-	},
 
 	-- Formatter
 	{
@@ -66,6 +63,9 @@ require("lazy").setup({
 	},
 	{
 		"nvim-lualine/lualine.nvim",
+	},
+	{
+		"nathanaelkane/vim-indent-guides",
 	},
 
 	-- Completion

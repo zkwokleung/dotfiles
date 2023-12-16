@@ -59,6 +59,7 @@ cd PowerShell && ./bootstrap.ps1
 -   [tokyonight](https://github.com/folke/tokyonight.nvim) - Theme
 -   [copilot.vim](https://github.com/github/copilot.vim) - Copilot
 -   [Conquer of Completion](https://github.com/neoclide/coc.nvim) - Snippet for vim
+-   [ast-grep](https://github.com/ast-grep/ast-grep) - A powerful linter for almost any languages
 
 ### PowerShell
 
