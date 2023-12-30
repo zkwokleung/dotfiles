@@ -66,6 +66,11 @@ alias gl="git log --graph --full-history --all --color \
           alias gpom="git push origin main"
           alias glom="git pull origin main"
 
+# * Copilot
+          alias copilot="gh copilot"
+          alias gcs="gh copilot suggest"
+          alias gce="gh copilot explain"
+
 # * Vim
           alias v=nvim
           alias vi=nvim

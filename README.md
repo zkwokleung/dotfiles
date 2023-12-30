@@ -48,6 +48,7 @@ cd PowerShell && ./bootstrap.ps1
 -   [zsh-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting/tree/master) - Command highlight
 -   [The silver search](https://github.com/ggreer/the_silver_searcher) - File searcher
 -   [fzf](https://github.com/junegunn/fzf)
+-   [Copilot CLI](https://dev.to/github/stop-struggling-with-terminal-commands-github-copilot-in-the-cli-is-here-to-help-4pnb) - Copilot suggestions for CLI
 
 ### NeoVim
 
