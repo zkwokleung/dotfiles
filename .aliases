@@ -7,36 +7,36 @@ alias -- -="cd -"
 
 # Check if exa is installed
 if command -v exa &>/dev/null; then
-alias ls='exa --icons --color=always --group-directories-first'
-alias ll='exa -alF --icons --color=always --group-directories-first'
-alias la='exa -a --icons --color=always --group-directories-first'
-alias l='exa -F --icons --color=always --group-directories-first'
-alias l.='exa -a | egrep "^\."'
-alias ldir='exa -d */ --icons --color=always --group-directories-first'
+    alias ls='exa --icons --color=always --group-directories-first'
+    alias ll='exa -alF --icons --color=always --group-directories-first'
+    alias la='exa -a --icons --color=always --group-directories-first'
+    alias l='exa -F --icons --color=always --group-directories-first'
+    alias l.='exa -a | egrep "^\."'
+    alias ldir='exa -d */ --icons --color=always --group-directories-first'
 else
-# Detect which `ls` flavor is in use
-if ls --color >/dev/null 2>&1; then # GNU `ls`
-colorflag="--color"
-export LS_COLORS='no=00:fi=00:di=01;31:ln=01;36:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.gz=01;31:*.bz2=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.avi=01;35:*.fli=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.ogg=01;35:*.mp3=01;35:*.wav=01;35:'
-else # macOS `ls`
-# Check if the vivid command is installed
-if command -v vivid &>/dev/null; then
-export LS_COLORS='$(vivid generate one-dark)'
-else
-colorflag="-G"
-export LS_COLORS='BxBxhxDxfxhxhxhxhxcxcx'
-fi
-fi
+    # Detect which `ls` flavor is in use
+    if ls --color >/dev/null 2>&1; then # GNU `ls`
+        colorflag="--color"
+        export LS_COLORS='no=00:fi=00:di=01;31:ln=01;36:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.gz=01;31:*.bz2=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.avi=01;35:*.fli=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.ogg=01;35:*.mp3=01;35:*.wav=01;35:'
+    else # macOS `ls`
+        # Check if the vivid command is installed
+        if command -v vivid &>/dev/null; then
+            export LS_COLORS='$(vivid generate one-dark)'
+        else
+            colorflag="-G"
+            export LS_COLORS='BxBxhxDxfxhxhxhxhxcxcx'
+        fi
+    fi
 
-# List all files colorized in long format
-alias l="ls -lF ${colorflag}"
-alias ls="ls ${colorflag}"
+    # List all files colorized in long format
+    alias l="ls -lF ${colorflag}"
+    alias ls="ls ${colorflag}"
 
-# List all files colorized in long format, excluding . and ..
-alias la="ls -lAF ${colorflag}"
+    # List all files colorized in long format, excluding . and ..
+    alias la="ls -lAF ${colorflag}"
 
-# List only directories
-alias ldir="ls -lF ${colorflag} | grep --color=never '^d'"
+    # List only directories
+    alias ldir="ls -lF ${colorflag} | grep --color=never '^d'"
 fi
 
 # Misc
@@ -61,33 +61,34 @@ alias gc="git commit"
 alias gs="git status"
 alias gl="git log --graph --full-history --all --color \
           --pretty=format:'%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s'"
-          alias gf="git fetch"
-          alias gcm="git commit -m"
-          alias gpom="git push origin main"
-          alias glom="git pull origin main"
+alias gf="git fetch"
+alias gcm="git commit -m"
+alias gpom="git push origin main"
+alias glom="git pull origin main"
 
 # * Copilot
-          alias copilot="gh copilot"
-          alias gcs="gh copilot suggest"
-          alias gce="gh copilot explain"
+alias copilot="gh copilot"
+alias gcs="gh copilot suggest"
+alias gce="gh copilot explain"
 
 # * Vim
-          alias v=nvim
-          alias vi=nvim
-          alias vim=nvim
+alias v=nvim
+alias vi=nvim
+alias vim=nvim
 
 # * Node
-          alias npm=pnpm
+alias npm=pnpm
+alias npx="pnpm dlx"
 
 # * Python
-          alias py=python3
-          alias python=python3
-          alias pip=pip3
+alias py=python3
+alias python=python3
+alias pip=pip3
 
 # * CUHK
-          alias licse="ssh klszeto1@linux8.cse.cuhk.edu.hk"
+alias licse="ssh klszeto1@linux8.cse.cuhk.edu.hk"
 # CSCI4180
-          alias li4180="ssh -p 13008 hadoop@projgw.cse.cuhk.edu.hk"
-          alias scp4180='f () { scp -P 13008 -r "$1" hadoop@projgw.cse.cuhk.edu.hk:~/; unset -f f }; f'
+alias li4180="ssh -p 13008 hadoop@projgw.cse.cuhk.edu.hk"
+alias scp4180='f () { scp -P 13008 -r "$1" hadoop@projgw.cse.cuhk.edu.hk:~/; unset -f f }; f'
 # CENG4480
-          alias li4480="ssh klszeto1@192.168.0.104"
+alias li4480="ssh klszeto1@192.168.0.104"
