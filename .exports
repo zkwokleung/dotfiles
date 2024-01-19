@@ -19,3 +19,6 @@ export FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
 
 # fzf
 export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -l -g ""'
+
+# Ruby
+export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
