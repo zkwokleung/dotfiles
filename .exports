@@ -21,4 +21,7 @@ export FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
 export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -l -g ""'
 
 # Ruby
-export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
+export PATH="$PATH:/opt/homebrew/opt/ruby/bin"
+
+# Flutter
+export PATH="$PATH:$HOME/Developments/flutter/bin"
