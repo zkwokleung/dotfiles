@@ -36,3 +36,18 @@ function nbd() {
     npm run build;
     npm run deploy;
 }
+
+# Conda
+function conact() {
+    conda activate $1;
+    conda env list;
+}
+
+function condeact() {
+    conda deactivate;
+    conda env list;
+}
+
+function conin() {
+    conda info --envs;
+}
