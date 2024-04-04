@@ -51,3 +51,15 @@ function condeact() {
 function conin() {
     conda info --envs;
 }
+
+function doge() {
+    cd ~/Pictures/Animals;
+    ascii-image-converter polite-dog.png;
+    cd - > 0;
+}
+
+function capy() {
+    cd ~/Pictures/Animals;
+    ascii-image-converter capy-1.jpeg;
+    cd - > 0;
+}
