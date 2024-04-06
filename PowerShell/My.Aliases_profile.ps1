@@ -8,6 +8,4 @@ Set-Alias py python
 Set-Alias n pnpm
 Set-Alias npm pnpm
 Set-Alias npx "pnpm exec"
-Set-Alias ni "pnpm install"
-Set-Alias ns "pnpm start"
 
