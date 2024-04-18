@@ -20,6 +20,3 @@ unset __conda_setup
 # bun completions
 [ -s "/Users/zkwokleung/.bun/_bun" ] && source "/Users/zkwokleung/.bun/_bun"
 
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"

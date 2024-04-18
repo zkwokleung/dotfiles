@@ -25,3 +25,12 @@ export PATH="$PATH:/opt/homebrew/opt/ruby/bin"
 
 # Flutter
 export PATH="$PATH:$HOME/Developments/flutter/bin"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+# deno
+export DENO_INSTALL="~/.deno"
+export PATH="$DENO_INSTALL/bin:$PATH"
+
