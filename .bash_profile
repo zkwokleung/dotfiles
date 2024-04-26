@@ -2,6 +2,18 @@
 if [[ "$OSTYPE" == "darwin"* ]]; then
   # Homebrew
   eval "$(/opt/homebrew/bin/brew shellenv)"
+
+  # zsh-autosuggestions
+  source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+  # zsh-syntax-highlighting
+  source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+  # Icons in terminal
+  source ~/.local/share/icons-in-terminal/icons_bash.sh
+
+  # fzf
+  [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 fi
 
 # Load the shell dotfiles, and then some:
@@ -11,18 +23,6 @@ for file in ~/.{path,bash_prompt,exports,aliases,functions,extra,inputrc,extend}
   [ -r "$file" ] && [ -f "$file" ] && source "$file"
 done
 unset file
-
-# Icons in terminal
-source ~/.local/share/icons-in-terminal/icons_bash.sh
-
-# zsh-autosuggestions
-source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-
-# zsh-syntax-highlighting
-source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-# fzf
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Enter tmux on start
 if command -v tmux &>/dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then

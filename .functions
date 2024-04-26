@@ -12,7 +12,7 @@ function o() {
         open .
     else
         open "$@"
-            fi
+    fi
 }
 
 # `tre` is a shorthand for `tree` with hidden files and color enabled, ignoring
@@ -25,41 +25,41 @@ function tre() {
 }
 
 function :q() {
-              for i in {30..37}; do
-# Display hello message
-                  echo -e "\e[00;${i}mYOU ARE NOT USING VIM!!!!!!!!\e[00m"
-                      done
-          }
+    for i in {30..37}; do
+        # Display hello message
+        echo -e "\e[00;${i}mYOU ARE NOT USING VIM!!!!!!!!\e[00m"
+    done
+}
 
 # NPM functions
 function nbd() {
-    npm run build;
-    npm run deploy;
+    npm run build
+    npm run deploy
 }
 
 # Conda
 function conact() {
-    conda activate $1;
-    conda env list;
+    conda activate $1
+    conda env list
 }
 
 function condeact() {
-    conda deactivate;
-    conda env list;
+    conda deactivate
+    conda env list
 }
 
 function conin() {
-    conda info --envs;
+    conda info --envs
 }
 
 function doge() {
-    cd ~/Pictures/Animals;
-    ascii-image-converter polite-dog.png;
-    cd - > 0;
+    cd ~/Pictures/Animals
+    ascii-image-converter polite-dog.png
+    cd - >0
 }
 
 function capy() {
-    cd ~/Pictures/Animals;
-    ascii-image-converter capy-1.jpeg;
-    cd - > 0;
+    cd ~/Pictures/Animals
+    ascii-image-converter capy-1.jpeg
+    cd - >0
 }
