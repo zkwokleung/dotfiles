@@ -5,7 +5,7 @@ Set-Alias g git
 Set-Alias py python
 
 # npm
-Set-Alias n pnpm
-Set-Alias npm pnpm
-Set-Alias npx "pnpm exec"
+Set-Alias n bun
+Set-Alias npm bun
+Set-Alias npx "bun exec"
 
