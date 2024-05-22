@@ -30,7 +30,7 @@ function gf { git fetch }
 function ga { git add }
 function gaa { git add --all }
 function gcmit { git commit }
-function gcmsg {
+function gcmm {
     git commit -m $args[0]
 }
 function gpom { git push origin main }
