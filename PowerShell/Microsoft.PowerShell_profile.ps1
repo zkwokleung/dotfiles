@@ -4,6 +4,8 @@ oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\my-theme.json" | Invoke-Exp
 # Import Modules
 Import-Module Get-ChildItemColor
 Import-Module -Name Terminal-Icons
+Import-Module PSReadLine
+Import-Module PsGet
 
 # Auto Completes
 Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete

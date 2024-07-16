@@ -5,6 +5,3 @@ Copy-Item -Path "$PSScriptRoot\*.ps1" -Destination "$env:USERPROFILE\Documents\P
 
 # Copy the themes
 Copy-Item -Path "$PSScriptRoot\themes\*.json" -Destination "$env:POSH_THEMES_PATH\" -Force
-
-# Reload the profile
-. $PROFILE
