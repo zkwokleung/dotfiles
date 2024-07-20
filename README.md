@@ -68,3 +68,5 @@ cd PowerShell && ./bootstrap.ps1
 -   [Oh-My-Posh](https://github.com/JanDeDobbeleer/oh-my-posh) - Makes the terminal looks nicer
 -   [Get-ChildItemColor](https://github.com/joonro/Get-ChildItemColor) - ls with colors
 -   [Terminal-Icons](https://github.com/devblackops/Terminal-Icons) - ls with icons
+-   [PsGet](https://github.com/psget/psget)
+-   [PSColor](https://github.com/Davlind/PSColor)
