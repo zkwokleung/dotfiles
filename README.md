@@ -69,4 +69,4 @@ cd PowerShell && ./bootstrap.ps1
 -   [Get-ChildItemColor](https://github.com/joonro/Get-ChildItemColor) - ls with colors
 -   [Terminal-Icons](https://github.com/devblackops/Terminal-Icons) - ls with icons
 -   [PsGet](https://github.com/psget/psget)
--   [PSColor](https://github.com/Davlind/PSColor)
+-   [PSColor](https://github.com/Davlind/PSColor) - Color highlights for PS output
