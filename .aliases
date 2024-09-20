@@ -5,14 +5,14 @@ alias ....="cd ../../.."
 alias .....="cd ../../../.."
 alias -- -="cd -"
 
-# Check if exa is installed
-if command -v exa &>/dev/null; then
-    alias ls='exa --icons --color=always --group-directories-first'
-    alias ll='exa -alF --icons --color=always --group-directories-first'
-    alias la='exa -a --icons --color=always --group-directories-first'
-    alias l='exa -F --icons --color=always --group-directories-first'
-    alias l.='exa -a | egrep "^\."'
-    alias ldir='exa -d */ --icons --color=always --group-directories-first'
+# Check if eza is installed
+if command -v eza &>/dev/null; then
+    alias ls='eza --icons --color=always --group-directories-first'
+    alias ll='eza -alF --icons --color=always --group-directories-first'
+    alias la='eza -a --icons --color=always --group-directories-first'
+    alias l='eza -F --icons --color=always --group-directories-first'
+    alias l.='eza -a | egrep "^\."'
+    alias ldir='eza -d */ --icons --color=always --group-directories-first'
 else
     # Detect which `ls` flavor is in use
     if ls --color >/dev/null 2>&1; then # GNU `ls`
@@ -94,11 +94,3 @@ alias npx="bun exec"
 alias py=python3
 alias python=python3
 alias pip=pip3
-
-# * CUHK
-alias licse="ssh klszeto1@linux8.cse.cuhk.edu.hk"
-# CSCI4180
-alias li4180="ssh -p 13008 hadoop@projgw.cse.cuhk.edu.hk"
-alias scp4180='f () { scp -P 13008 -r "$1" hadoop@projgw.cse.cuhk.edu.hk:~/; unset -f f }; f'
-# CENG4480
-alias li4480="ssh klszeto1@192.168.0.104"
