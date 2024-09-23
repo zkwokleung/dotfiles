@@ -8,7 +8,6 @@ M.lsps = {
     'denols',
     'bashls',
     'pyright',
-    'tsserver',
 }
 
 M.linters = {

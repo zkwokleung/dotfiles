@@ -127,7 +127,4 @@ require("lazy").setup({
 	{
 		"romgrk/barbar.nvim",
 	},
-	{
-		"github/copilot.vim",
-	},
 })
