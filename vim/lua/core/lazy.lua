@@ -64,9 +64,16 @@ require("lazy").setup({
 	{
 		"nvim-lualine/lualine.nvim",
 	},
-	{
-		"nathanaelkane/vim-indent-guides",
-	},
+	-- {
+	-- 	"nathanaelkane/vim-indent-guides",
+	-- },
+    {
+        "lukas-reineke/indent-blankline.nvim",
+        main = "ibl",
+        ---@module "ibl"
+        ---@type ibl.config
+        opts = {},
+    },
 
 	-- Completion
 	{

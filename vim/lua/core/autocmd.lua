@@ -37,7 +37,6 @@ autocmd({ "BufReadPre", "BufNewFile" }, {
 	group = indent_group,
 	pattern = "*",
 	callback = function()
-		vim.cmd("IndentGuidesEnable")
 		vim.cmd "TSEnable highlight"
 	end,
 })
