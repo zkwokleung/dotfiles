@@ -64,9 +64,6 @@ require("lazy").setup({
 	{
 		"nvim-lualine/lualine.nvim",
 	},
-	-- {
-	-- 	"nathanaelkane/vim-indent-guides",
-	-- },
     {
         "lukas-reineke/indent-blankline.nvim",
         main = "ibl",
@@ -133,5 +130,8 @@ require("lazy").setup({
 	},
 	{
 		"romgrk/barbar.nvim",
+	},
+	{
+	    'dense-analysis/ale',
 	},
 })
