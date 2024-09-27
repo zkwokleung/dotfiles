@@ -63,3 +63,48 @@ function capy() {
     ascii-image-converter capy-1.jpeg
     cd - >0
 }
+
+function current-whether() {
+    while true;
+    do
+        clear
+        curl -s wttr.in | head -7 
+        sleep 1800
+    done
+}
+
+function future-whether() {
+    while true;
+    do
+        clear
+        curl -s wttr.in | head -27 | tail -20 
+        sleep 3000
+    done
+}
+
+function moon-phase() {
+    while true; 
+    do
+        clear
+        curl wttr.in/moon | head -24
+        sleep 3600
+    done
+}
+
+function quote-display() {
+    while true;
+    do
+        clear
+        TEXT=$(curl https://zenquotes.io/api/random -s | jq -r '.[0].q')
+        COLUMNS=$(tput cols)
+        ROWS=$(tput lines)
+        CENTERROW=$(($ROWS/2))
+
+        for _ in $(seq 2 $CENTERROW); do
+            printf "\n"
+        done
+
+        printf "%*s\n" $(((${#TEXT}+$COLUMNS)/2)) "$TEXT"
+        sleep 1500
+    done
+}
