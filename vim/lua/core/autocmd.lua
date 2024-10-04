@@ -27,7 +27,7 @@ autocmd({ "BufWritePre" }, {
 	group = files_group,
 	callback = function()
 		-- Call AutoFormat
-		vim.cmd("Autoformat")
+		-- vim.cmd("Autoformat")
 	end,
 })
 
@@ -37,7 +37,7 @@ autocmd({ "BufReadPre", "BufNewFile" }, {
 	group = indent_group,
 	pattern = "*",
 	callback = function()
-		vim.cmd "TSEnable highlight"
+		vim.cmd("TSEnable highlight")
 	end,
 })
 
@@ -45,6 +45,6 @@ autocmd({ "BufReadPre", "BufNewFile" }, {
 vim.api.nvim_create_autocmd({ "BufWritePost" }, {
 	group = files_group,
 	callback = function()
-		require("lint").try_lint()
+		pcall(require("lint").try_lint)
 	end,
 })

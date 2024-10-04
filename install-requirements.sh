@@ -10,6 +10,7 @@ declare -a req=(
     "fontconfig"
     "zsh-autosuggestions"
     "zsh-syntax-highlighting"
+    "ripgrep"
 )
 
 # Install brew if it is mac
@@ -27,4 +28,9 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
             brew install "$r"
         fi
     done
+fi
+
+# Install bun
+if ! command -v bun; then
+    curl -fsSL https://bun.sh/install | bash
 fi
