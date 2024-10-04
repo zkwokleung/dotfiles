@@ -36,3 +36,6 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   export DENO_INSTALL="~/.deno"
   export PATH="$DENO_INSTALL/bin:$PATH"
 fi
+
+# Espanso
+export EDITOR="/opt/homebrew/bin/nvim"
