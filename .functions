@@ -69,6 +69,8 @@ function current-whether() {
     do
         clear
         curl -s wttr.in | head -7 
+        echo "\n"
+        echo "Last Updated: $(date)"
         sleep 1800
     done
 }
@@ -78,6 +80,8 @@ function future-whether() {
     do
         clear
         curl -s wttr.in | head -27 | tail -20 
+        echo "\n"
+        echo "Last Updated: $(date)"
         sleep 3000
     done
 }
