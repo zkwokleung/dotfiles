@@ -40,7 +40,7 @@ else
 fi
 
 # Misc
-alias rl="source ~/.zprofile"
+alias rl="source ~/.zshrc"
 alias cls=clear
 alias clip="tr -d '\n' | pbcopy"
 
@@ -75,6 +75,8 @@ alias gf="git fetch"
 alias gcm="git commit -m"
 alias gpom="git push origin main"
 alias glom="git pull origin main"
+alias gpo="git push origin"
+alias glo="git pull origin"
 
 # * Copilot
 alias copilot="gh copilot"
