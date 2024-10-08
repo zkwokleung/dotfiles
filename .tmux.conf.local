@@ -1,8 +1,5 @@
 # : << EOF
-# https://github.com/gpakosz/.tmux
-# (‑●‑●)> dual licensed under the WTFPL v2 license and the MIT license,
-#         without any warranty.
-#         Copyright 2012— Gregory Pakosz (@gpakosz).
+
 
 # -- session creation ----------------------------------------------------------
 
@@ -11,6 +8,7 @@
 #   - false (default)
 #   - disabled (do not modify new-session bindings)
 tmux_conf_new_session_prompt=true
+
 
 # -- windows & pane creation ---------------------------------------------------
 
@@ -38,6 +36,7 @@ tmux_conf_new_pane_retain_current_path=true
 #   - disabled (do not modify split-window bindings)
 tmux_conf_new_pane_reconnect_ssh=false
 
+
 # -- display -------------------------------------------------------------------
 
 # RGB 24-bit colour support, possible values are:
@@ -49,6 +48,7 @@ tmux_conf_new_pane_reconnect_ssh=false
 # to 'truecolor' or '24bit' or '$ tput colors' answering '16777216'
 # see https://github.com/termstandard/colors
 tmux_conf_24b_colour=auto
+
 
 # -- theming -------------------------------------------------------------------
 
@@ -345,7 +345,11 @@ tmux_conf_battery_status_discharging="🔋" # U+1F50B
 tmux_conf_theme_clock_colour="$tmux_conf_theme_colour_4"
 tmux_conf_theme_clock_style="24"
 
+
 # -- clipboard -----------------------------------------------------------------
+
+# enable clipboard
+set -g set-clipboard on
 
 # in copy mode, copying selection also copies to the OS clipboard
 #   - true
@@ -354,6 +358,7 @@ tmux_conf_theme_clock_style="24"
 # on macOS, this requires installing reattach-to-user-namespace, see README.md
 # on Linux, this requires xsel, xclip or wl-copy
 tmux_conf_copy_to_os_clipboard=true
+
 
 # -- user customizations -------------------------------------------------------
 # this is the place to override or undo settings
@@ -382,29 +387,18 @@ bind C-a send-prefix
 # kill window
 bind X confirm-before -p "kill-window #W? (y/n)" kill-window
 
-# kill session
-# bind K confirm-before -p "kill-session #S? (y/n)" kill-session
-
 # respawn window
 bind R respawn-window -k
 
-# Sync panes
+# respawn pane
+unbind r
+bind r respawn-pane -k
+
+# sync panes
 bind C-y set-window-option synchronize-panes
 
-# move status line to top
-#set -g status-position top
-
-# enable clipboard
-set -g set-clipboard on
 
 # -- tpm -----------------------------------------------------------------------
-
-# while I don't use tpm myself, many people requested official support so here
-# is a seamless integration that automatically installs plugins in parallel
-
-# whenever a plugin introduces a variable to be used in 'status-left' or
-# 'status-right', you can use it in 'tmux_conf_theme_status_left' and
-# 'tmux_conf_theme_status_right' variables.
 
 # by default, launching tmux will update tpm and all plugins
 #   - true (default)
