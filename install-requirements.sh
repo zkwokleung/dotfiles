@@ -11,6 +11,7 @@ declare -a req=(
     "zsh-autosuggestions"
     "zsh-syntax-highlighting"
     "ripgrep"
+    "the_silver_searcher"
 )
 
 # Install brew if it is mac
