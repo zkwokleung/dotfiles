@@ -112,3 +112,26 @@ function quote-display() {
         sleep 1500
     done
 }
+
+function loading() {
+    printf "%s\n" "Loading Brain Cells. . ."
+
+    MAX=100
+     
+    while true; do
+        for i in $(seq 0 $MAX); do
+            printf  "%s" "["
+            for _ in $(seq 0 "$i"); do
+                printf "%s" "█"
+            done
+            for _ in $(seq 0 $(($MAX-$i))); do
+                printf " " 
+            done
+            printf "%s" "]"
+            sleep $(awk -v n=10 -v seed="$RANDOM" 'BEGIN { srand(seed); printf("%.4f\n", rand()%.7f) }')
+            printf "\r"
+        done
+        curl "http://www.randomnumberapi.com/api/v1.0/randomstring?min=$MAX"
+        sleep 1
+    done
+}
