@@ -47,6 +47,9 @@ alias clip="tr -d '\n' | pbcopy"
 # Shortcuts
 if [ -d ~/Projects ]; then
     alias p="cd ~/Projects && ls"
+    if [ -d ~/Projects/dotfiles ]; then
+        alias dot="cd ~/Projects/dotfiles"
+    fi
 fi
 if [ -d /mnt/f/Projects ]; then
     alias p="cd /mnt/f/Projects && ls"
