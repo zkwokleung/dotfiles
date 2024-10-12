@@ -4,7 +4,6 @@ M.lsps = {
     'clangd',
     'cmake',
     'cssls',
-    'csharp_ls',
     'denols',
     'bashls',
     'pyright',
