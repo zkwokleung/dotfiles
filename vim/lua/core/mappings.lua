@@ -12,6 +12,14 @@ map("i", "<A-k>", "<Esc>:m .-2<CR>==gi", opts)
 map("v", "<A-j>", ":m '>+1<CR>gv=gv", opts)
 map("v", "<A-k>", ":m '<-2<CR>gv=gv", opts)
 
+-- Copy lines up
+map("n", "<A-J>", ":copy .<CR>==", opts)
+map("n", "<A-K>", ":copy .-1<CR>==", opts)
+map("i", "<A-J>", "<Esc>:copy .-1<CR>==gi", opts)
+map("i", "<A-K>", "<Esc>:copy .<CR>==gi", opts)
+map("v", "<A-J>", ":copy '>-1<CR>gv=gv", opts)
+map("v", "<A-K>", ":copy '<<CR>gv=gv", opts)
+
 -- ALE fix
 map("n", "<Leader>?", ":ALEFixSuggest<CR>", opts)
 
@@ -58,3 +66,7 @@ map({ "n", "v" }, "<F3>", "<cmd>AutoFormat<CR>", opts)
 
 -- FZF
 map({ "n", "v", "i" }, "<C-p>", "<cmd>FZF<CR>", opts)
+
+-- Delete to Esc
+--map({ "n", "o" }, "<Esc>", opts)
+--map({ "v" }, "<Esc>gv", opts)
