@@ -66,7 +66,3 @@ map({ "n", "v" }, "<F3>", "<cmd>AutoFormat<CR>", opts)
 
 -- FZF
 map({ "n", "v", "i" }, "<C-p>", "<cmd>FZF<CR>", opts)
-
--- Delete to Esc
---map({ "n", "o" }, "<Esc>", opts)
---map({ "v" }, "<Esc>gv", opts)
