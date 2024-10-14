@@ -85,10 +85,6 @@ require("lazy").setup({
 	{
 		"jiangmiao/auto-pairs",
 	},
-	-- {
-	-- 	"neoclide/coc.nvim",
-	-- 	branch = "release",
-	-- },
 
 	-- Debugging
 	{

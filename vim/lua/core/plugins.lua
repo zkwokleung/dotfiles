@@ -35,16 +35,6 @@ require("mason-tool-installer").setup({
 -- #endregion
 
 -- #region Indent Blankline
-local highlight = {
-	"RainbowRed",
-	"RainbowYellow",
-	"RainbowBlue",
-	"RainbowOrange",
-	"RainbowGreen",
-	"RainbowViolet",
-	"RainbowCyan",
-}
-
 local hooks = require("ibl.hooks")
 -- create the highlight groups in the highlight setup hook, so they are reset
 -- every time the colorscheme changes
@@ -58,7 +48,19 @@ hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
 	vim.api.nvim_set_hl(0, "RainbowCyan", { fg = "#56B6C2" })
 end)
 
-require("ibl").setup({ indent = { highlight = highlight } })
+require("ibl").setup({
+	indent = {
+		highlight = {
+			"RainbowRed",
+			"RainbowYellow",
+			"RainbowBlue",
+			"RainbowOrange",
+			"RainbowGreen",
+			"RainbowViolet",
+			"RainbowCyan",
+		},
+	},
+})
 -- #endregion
 
 -- #region TODO Comment
@@ -137,7 +139,7 @@ require("neo-tree").setup({
 			hide_gitignored = false,
 			hide_hidden = false, -- only works on Windows for hidden files/directories
 			hide_by_name = {
-				"node_modules"
+				"node_modules",
 			},
 			hide_by_pattern = { -- uses glob style patterns
 				--"*.meta",
@@ -150,7 +152,7 @@ require("neo-tree").setup({
 				--".env*",
 			},
 			never_show = { -- remains hidden even if visible is toggled to true, this overrides always_show
-			    ".DS_Store",
+				".DS_Store",
 				--"thumbs.db"
 			},
 			never_show_by_pattern = { -- uses glob style patterns
