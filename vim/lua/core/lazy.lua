@@ -71,6 +71,9 @@ require("lazy").setup({
 		---@type ibl.config
 		opts = {},
 	},
+	{
+	    "kshenoy/vim-signature",
+	},
 
 	-- Completion
 	{
