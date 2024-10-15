@@ -88,6 +88,9 @@ require("lazy").setup({
 	{
 		"jiangmiao/auto-pairs",
 	},
+	{
+	    "tpope/vim-surround",
+	},
 
 	-- Debugging
 	{

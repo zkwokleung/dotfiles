@@ -19,11 +19,13 @@ local lang = {
 }
 
 local ui = {
+    'ui/commandbar',
+    'ui/comments',
     'ui/dashboard',
+    'ui/indent',
+    'ui/statusline',
     'ui/theme',
     'ui/tree',
-    'ui/statusline',
-    'ui/commandbar',
 }
 
 local helper = {
