@@ -20,6 +20,16 @@ map("i", "<A-K>", "<Esc>:copy .<CR>==gi", opts)
 map("v", "<A-J>", ":copy '>-1<CR>gv=gv", opts)
 map("v", "<A-K>", ":copy '<<CR>gv=gv", opts)
 
+-- Create new line
+map("i", "<C-j>", "<Esc>o", opts)
+map("i", "<C-k>", "<Esc>O", opts)
+
+-- Escaping
+map("n", "<Space>", ":nohl<CR>", opts)
+
+-- Delete word
+map("i", "<C-BS>", "<C-w>", opts)
+
 -- ALE fix
 map("n", "<Leader>?", ":ALEFixSuggest<CR>", opts)
 
