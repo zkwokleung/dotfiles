@@ -49,7 +49,7 @@ M.fmts = {
     'google-java-format',
     'ktlint',
     'latexindent',
-    'autoflake',
+    'black',
     'shfmt',
     'stylua',
 }

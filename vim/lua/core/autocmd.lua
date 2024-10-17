@@ -27,7 +27,7 @@ autocmd({ "BufWritePre" }, {
 	group = files_group,
 	callback = function()
 		-- Call AutoFormat
-		-- vim.cmd("Autoformat")
+		vim.cmd("Format")
 	end,
 })
 

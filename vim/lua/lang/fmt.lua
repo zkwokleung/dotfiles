@@ -88,7 +88,7 @@ require("formatter").setup {
         },
 
         python = {
-            require("formatter.filetypes.python").autoflake,
+            require("formatter.filetypes.python").black,
         },
 
         sh = {
