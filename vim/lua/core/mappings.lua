@@ -24,6 +24,10 @@ map("v", "<A-K>", ":copy '<<CR>gv=gv", opts)
 map("i", "<C-j>", "<Esc>o", opts)
 map("i", "<C-k>", "<Esc>O", opts)
 
+-- Navigation
+map("i", "<C-h>", "<Esc>^i", opts)
+map("i", "<C-l>", "<Esc>$a", opts)
+
 -- Escaping
 map("n", "<Space>", ":nohl<CR>", opts)
 

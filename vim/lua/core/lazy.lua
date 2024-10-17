@@ -69,7 +69,7 @@ require("lazy").setup({
 		opts = {},
 	},
 	{
-	    "kshenoy/vim-signature",
+		"kshenoy/vim-signature",
 	},
 
 	-- Completion
@@ -83,10 +83,12 @@ require("lazy").setup({
 		},
 	},
 	{
-		"jiangmiao/auto-pairs",
+		"tpope/vim-surround",
 	},
 	{
-	    "tpope/vim-surround",
+		"windwp/nvim-autopairs",
+		event = "InsertEnter",
+		config = true,
 	},
 
 	-- Debugging
