@@ -21,6 +21,15 @@ autocmd({ "FileType" }, {
 	end,
 })
 
+autocmd({ "FileType" }, {
+	desc = "Set format options for python",
+	group = filetypes_group,
+	pattern = "python",
+	callback = function()
+        vim.opt.foldmethod = "indent"
+	end,
+})
+
 -- Format on save
 autocmd({ "BufWritePre" }, {
 	desc = "Format on save",
