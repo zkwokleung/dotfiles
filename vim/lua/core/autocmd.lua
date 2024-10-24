@@ -26,7 +26,16 @@ autocmd({ "FileType" }, {
 	group = filetypes_group,
 	pattern = "python",
 	callback = function()
-        vim.opt.foldmethod = "indent"
+		vim.opt.foldmethod = "indent"
+	end,
+})
+
+autocmd({ "BufEnter", "BufRead" }, {
+	desc = "Set syntax mode for custom dotfiles",
+	group = files_group,
+	pattern = ".aliases,.bash_prompt,.exports,.functions,.inputrc",
+	callback = function()
+		vim.opt.syntax = "sh"
 	end,
 })
 

@@ -29,7 +29,7 @@ map("i", "<C-h>", "<Esc>^i", opts)
 map("i", "<C-l>", "<Esc>$a", opts)
 
 -- Escaping
-map("n", "<Space>", ":nohl<CR>", opts)
+map("n", "<Leader><Space>", ":nohl<CR>", opts)
 
 -- Delete word
 map("i", "<C-BS>", "<C-w>", opts)
@@ -39,8 +39,8 @@ map("n", "<Leader>?", ":ALEFixSuggest<CR>", opts)
 
 -- barbar tabline
 -- Move to previous/next
-map("n", "<Leader>,", ":BufferPrevious<CR>", opts)
-map("n", "<Leader>.", ":BufferNext<CR>", opts)
+-- map("n", "<Leader>,", ":BufferPrevious<CR>", opts)
+-- map("n", "<Leader>.", ":BufferNext<CR>", opts)
 -- Re-order to previous/next
 map("n", "<Leader><", ":BufferMovePrevious<CR>", opts)
 map("n", "<Leader>>", " :BufferMoveNext<CR>", opts)
@@ -80,3 +80,6 @@ map({ "n", "v" }, "<F3>", "<cmd>AutoFormat<CR>", opts)
 
 -- FZF
 map({ "n", "v", "i" }, "<C-p>", "<cmd>FZF<CR>", opts)
+
+-- Rename
+map({"n", "v", "i"}, "<F2>", function() vim.lsp.buf.rename() end, opts)

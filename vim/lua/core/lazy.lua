@@ -150,6 +150,21 @@ require("lazy").setup({
 		},
 	},
 
+	-- Comments
+	{
+		"numToStr/Comment.nvim",
+	},
+	{
+		"JoosepAlviste/nvim-ts-context-commentstring",
+	},
+	{
+		"folke/todo-comments.nvim",
+		dependencies = { "nvim-lua/plenary.nvim" },
+	},
+	{
+		"preservim/nerdcommenter",
+	},
+
 	-- Theme
 	{
 		"folke/tokyonight.nvim",
@@ -158,13 +173,6 @@ require("lazy").setup({
 	},
 
 	-- Make your life easier
-	{
-		"folke/todo-comments.nvim",
-		dependencies = { "nvim-lua/plenary.nvim" },
-	},
-	{
-		"preservim/nerdcommenter",
-	},
 	{
 		"mg979/vim-visual-multi",
 		branch = "master",

@@ -4,9 +4,11 @@ M.lsps = {
     'clangd',
     'cmake',
     'cssls',
-    'denols',
     'bashls',
     'pyright',
+    'eslint',
+    'ts_ls',
+    'tailwindcss',
 }
 
 M.linters = {
