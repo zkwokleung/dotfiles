@@ -2,6 +2,7 @@
 
 declare -a req=(
     "eza"
+    "thefuck"
     "nvim"
     "tmux"
     "ast-grep"
