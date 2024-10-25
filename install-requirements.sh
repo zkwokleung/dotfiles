@@ -3,6 +3,9 @@
 declare -a req=(
     "eza"
     "thefuck"
+    "tlrc"
+    "bat"
+    "diff-so-fancy"
     "nvim"
     "tmux"
     "ast-grep"
@@ -24,9 +27,8 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
         /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     fi
 
-    for r in "${req[@]}"
-    do
-        if brew ls -v "$r" > /dev/null; then
+    for r in "${req[@]}"; do
+        if brew ls -v "$r" >/dev/null; then
             brew install "$r"
         fi
     done
