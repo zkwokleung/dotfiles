@@ -4,10 +4,6 @@ local luasnip = require("luasnip")
 
 cmp.setup({
 	preselect = cmp.PreselectMode.None,
-	mapping = {},
-})
--- #endregion
-cmp.setup({
 	snippet = {
 		-- REQUIRED - you must specify a snippet engine
 		expand = function(args)
@@ -84,3 +80,4 @@ cmp.setup.cmdline(":", {
 		{ name = "cmdline" },
 	}),
 })
+-- #endregion
