@@ -5,6 +5,11 @@ alias ....="cd ../../.."
 alias .....="cd ../../../.."
 alias -- -="cd -"
 
+# Cat to Bat
+if command -v bat &>/dev/null; then
+    alias cat=bat
+fi
+
 # Check if eza is installed
 if command -v eza &>/dev/null; then
     alias ls='eza --icons --color=always --group-directories-first'
