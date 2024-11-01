@@ -16,6 +16,7 @@ declare -a req=(
     "zsh-syntax-highlighting"
     "ripgrep"
     "the_silver_searcher"
+    "entr"
 )
 
 # Install brew if it is mac
@@ -28,7 +29,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     fi
 
     for r in "${req[@]}"; do
-        if brew ls -v "$r" >/dev/null; then
+        if ! brew ls -v "$r" >/dev/null; then
             brew install "$r"
         fi
     done
