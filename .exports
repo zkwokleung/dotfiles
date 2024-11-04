@@ -24,6 +24,8 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 
   # Ruby
   export PATH="$PATH:/opt/homebrew/opt/ruby/bin"
+  export LDFLAGS="-L/opt/homebrew/opt/ruby/lib"
+  export CPPFLAGS="-I/opt/homebrew/opt/ruby/include"
 
   # Flutter
   export PATH="$PATH:$HOME/Developments/flutter/bin"

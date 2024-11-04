@@ -17,6 +17,7 @@ declare -a req=(
     "ripgrep"
     "the_silver_searcher"
     "entr"
+    "shortcat"
 )
 
 # Install brew if it is mac
@@ -28,11 +29,17 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
         /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     fi
 
+    # Install requirements
     for r in "${req[@]}"; do
         if ! brew ls -v "$r" >/dev/null; then
             brew install "$r"
         fi
     done
+
+    # Install cask linearmouse
+    if ! brew ls -v "linearmouse"; then
+        brew install --cask linearmouse
+    fi
 fi
 
 # Install bun

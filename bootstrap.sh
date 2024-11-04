@@ -25,17 +25,6 @@ function doIt() {
     rsync -avh .tmux.conf.local ~/.config/tmux/tmux.conf.local
     rsync -avh .gitmux.yaml ~/.config/tmux/gitmux.conf
 
-    # determine if the OS is macOS or linux
-    if [[ "$OSTYPE" == "darwin"* ]]; then
-        # macOS
-        cp .zprofile ~/.zshrc
-        source ~/.zshrc
-    elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
-        # Linux
-        cp .bashrc ~/.bashrc
-        source ~/.bashrc
-    fi
-
     # Config diff-so-fancy
     git config --global core.pager "diff-so-fancy | less --tabs=4 -RF"
     git config --global interactive.diffFilter "diff-so-fancy --patch"
