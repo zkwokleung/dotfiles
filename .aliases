@@ -48,6 +48,7 @@ fi
 alias rl="source ~/.zshrc"
 alias cls=clear
 alias clip="tr -d '\n' | pbcopy"
+alias f=fuck
 
 # Shortcuts
 if [ -d ~/Projects ]; then
