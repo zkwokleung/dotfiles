@@ -99,7 +99,7 @@ alias vim=nvim
 
 # * Node
 alias npm=bun
-alias npx="bun exec"
+alias npx=bunx
 
 # * Python
 alias py=python3
