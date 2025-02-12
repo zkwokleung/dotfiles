@@ -97,10 +97,6 @@ alias v=nvim
 alias vi=nvim
 alias vim=nvim
 
-# * Node
-alias npm=bun
-alias npx=bunx
-
 # * Python
 alias py=python3
 alias python=python3
