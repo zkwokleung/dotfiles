@@ -1,9 +1,9 @@
 # Shortcuts
-function pro {
+function p {
     Set-Location F:\Projects
 }
 
-# * cd 
+# * cd
 function .. { Set-Location .. }
 function ... { Set-Location ..\.. }
 function .... { Set-Location ..\..\.. }
@@ -21,7 +21,7 @@ function rl {
             Write-Verbose "Running $_"
             . $_
         }
-    }    
+    }
 }
 
 # * Git
