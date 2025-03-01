@@ -8,3 +8,38 @@
 	email = zkwokleung@gmail.com
 [core]
 	excludesfile = /Users/zkwokleung/.gitignore
+	pager = diff-so-fancy | less --tabs=4 -RF
+	ignorecase = false
+[interactive]
+	diffFilter = diff-so-fancy --patch
+[color]
+	ui = true
+[color "diff-highlight"]
+	oldNormal = red bold
+	oldHighlight = red bold 52
+	newNormal = green bold
+	newHighlight = green bold 22
+[color "diff"]
+	meta = 11
+	frag = magenta bold
+	func = 146 bold
+	commit = yellow bold
+	old = red bold
+	new = green bold
+	whitespace = red reverse
+[rebase]
+	autostash = true
+[rerere]
+	enabled = true
+[help]
+	autocorrect = prompt
+[diff]
+	algorithm = histogram
+[url "git@github.com"]
+	insteadOf = https://github.com
+[transfer]
+	fsckobjects = true
+[fetch]
+	fsckobjects = true
+[receive]
+	fsckobjects = true
