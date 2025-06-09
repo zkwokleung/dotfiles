@@ -18,7 +18,7 @@ function doIt() {
         --exclude ".tmux.conf.local" \
         --exclude ".gitmux.yaml" \
         --exclude ".trunk" \
-        --exclude "install-requirements.sh" \
+        --exclude "setup.sh" \
         -avh --no-perms . ~ || {
         printf "\e[31m%s\e[0m\n" "Error: Failed to copy dotfiles"
         exit 1

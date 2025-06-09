@@ -60,8 +60,8 @@
 │   └── .gitignore          # Global gitignore patterns
 │
 └── 🚀 Installation Scripts
-    ├── bootstrap.sh         # Main installation script
-    └── install-requirements.sh # Dependency installer
+    ├── setup.sh             # Environment setup & dependencies
+    └── bootstrap.sh         # Main dotfiles installation
 ```
 
 ---
@@ -83,7 +83,7 @@ cd ~/Projects/dotfiles
 
 **2. Install dependencies (recommended)**
 ```bash
-./install-requirements.sh
+./setup.sh
 ```
 
 **3. Apply dotfiles**
@@ -193,7 +193,7 @@ export PATH="$PATH:/my/custom/path"
 - **Backup first**: This setup may overwrite existing configurations
 - **macOS optimized**: Primarily tested on macOS, may need adjustments for other Unix systems
 - **Personal preferences**: These are personal configurations - adapt them to your workflow
-- **Dependencies**: Run `install-requirements.sh` for the best experience
+- **Dependencies**: Run `setup.sh` for the best experience
 
 ---
 
