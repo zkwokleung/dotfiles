@@ -17,8 +17,12 @@ function doIt() {
         --exclude "LICENSE-MIT.txt" \
         --exclude ".tmux.conf.local" \
         --exclude ".gitmux.yaml" \
+        --exclude "starship.toml" \
+        --exclude ".vscode/" \
+        --exclude ".config/" \
         --exclude ".trunk" \
         --exclude "setup.sh" \
+        --exclude "health-check.sh" \
         -avh --no-perms . ~ || {
         printf "\e[31m%s\e[0m\n" "Error: Failed to copy dotfiles"
         exit 1
@@ -42,6 +46,41 @@ function doIt() {
         printf "\e[31m%s\e[0m\n" "Error: Failed to copy gitmux.yaml"
         exit 1
     }
+
+    printf "\e[33m%s\e[0m\n" "# Updating Starship configuration..."
+
+    # Copy Starship configuration
+    if [ -f starship.toml ]; then
+        rsync -avh starship.toml ~/.config/starship.toml || {
+            printf "\e[31m%s\e[0m\n" "Error: Failed to copy starship.toml"
+            exit 1
+        }
+        printf "\e[32m%s\e[0m\n" "✅ Starship configuration updated"
+    else
+        printf "\e[33m%s\e[0m\n" "# starship.toml not found, skipping Starship configuration"
+    fi
+
+    printf "\e[33m%s\e[0m\n" "# Updating IDE configurations..."
+
+    # Copy VS Code settings
+    if [ -d .vscode ]; then
+        mkdir -p ~/.vscode
+        rsync -avh .vscode/ ~/.vscode/ || {
+            printf "\e[31m%s\e[0m\n" "Error: Failed to copy VS Code settings"
+            exit 1
+        }
+        printf "\e[32m%s\e[0m\n" "✅ VS Code settings updated"
+    fi
+
+    # Copy Neovim configuration
+    if [ -d .config/nvim ]; then
+        mkdir -p ~/.config/nvim
+        rsync -avh .config/nvim/ ~/.config/nvim/ || {
+            printf "\e[31m%s\e[0m\n" "Error: Failed to copy Neovim configuration"
+            exit 1
+        }
+        printf "\e[32m%s\e[0m\n" "✅ Neovim configuration updated"
+    fi
 
     printf "\e[33m%s\e[0m\n" "# Configuring git..."
 
