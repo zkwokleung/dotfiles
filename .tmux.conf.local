@@ -430,7 +430,14 @@ tmux_conf_uninstall_plugins_on_reload=true
 #set -g @plugin 'tmux-plugins/tmux-cpu'
 set -g @plugin 'tmux-plugins/tmux-resurrect'
 set -g @plugin 'tmux-plugins/tmux-continuum'
+set -g @plugin 'fcsonline/tmux-thumbs'
 set -g @continuum-restore 'on'
+
+# tmux-thumbs configuration
+set -g @thumbs-key Space
+set -g @thumbs-alphabet qwerty
+set -g @thumbs-reverse enabled
+set -g @thumbs-unique enabled
 
 # -- custom variables ----------------------------------------------------------
 
