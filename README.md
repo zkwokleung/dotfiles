@@ -1,72 +1,221 @@
-# zkwokleung's dotfiles
+# 🏠 zkwokleung's Dotfiles
 
-## Introduction
+<div align="center">
 
-The dotfiles are based on [Mathias's dotfiles](https://github.com/mathiasbynens/dotfiles) with my own personal changes. Since I am a MacOS and Windows user, this repository might not work properly on Linux enviroments.
+**🚀 A modern, feature-rich dotfiles collection for macOS and Unix systems**
 
-**Warning:** This is a very personal repository and it may not fits your daily workflow. You can take it as a reference for creating your own dotfiles project.
+*Transform your terminal experience with carefully crafted configurations*
 
-## Features
+[![macOS](https://img.shields.io/badge/macOS-000000?style=for-the-badge&logo=apple&logoColor=F0F0F0)](https://www.apple.com/macos/)
+[![Unix](https://img.shields.io/badge/Unix-FCC624?style=for-the-badge&logo=linux&logoColor=black)](https://www.kernel.org/)
+[![Zsh](https://img.shields.io/badge/Zsh-F15A24?style=for-the-badge&logo=zsh&logoColor=white)](https://www.zsh.org/)
+[![Tmux](https://img.shields.io/badge/tmux-1BB91F?style=for-the-badge&logo=tmux&logoColor=white)](https://github.com/tmux/tmux)
 
-### MacOS & Unix
+</div>
 
--   Automatically enter tmux
--   Better looking ls
+---
 
-### PowerShell
+## ✨ Features
 
--   Unix-like command aliases
--   Nice looking terminal
+### 🎯 Core Enhancements
+- **🔄 Automatic tmux sessions** - Never lose your work again
+- **🎨 Beautiful terminal styling** - Enhanced colors and icons with `eza`
+- **⚡ Smart aliases** - 100+ time-saving command shortcuts
+- **🔍 Powerful search** - Integrated `fzf` and `ag` for lightning-fast file finding
+- **🤖 AI-powered CLI** - GitHub Copilot integration for command suggestions
 
-## Installation
+### 🛠️ Development Tools
+- **📊 Git integration** - Enhanced git workflow with custom aliases and status display
+- **🔧 Multiple language support** - Optimized paths for Node.js, Python, Ruby, Flutter, and more
+- **📦 Package management** - Streamlined npm, pnpm, and bun configurations
+- **🎯 Smart navigation** - Quick access to common directories and projects
 
-### MacOS & Unix
+---
 
+## 📁 Project Structure
+
+```
+📦 dotfiles/
+├── 🔧 Core Configuration Files
+│   ├── .zshrc              # Zsh main configuration
+│   ├── .zprofile           # Zsh profile settings
+│   ├── .bash_profile       # Bash profile (fallback)
+│   ├── .bashrc             # Bash configuration
+│   └── .inputrc            # Readline configuration
+│
+├── ⚙️ Shell Enhancements
+│   ├── .aliases            # 100+ useful command aliases
+│   ├── .functions          # Custom shell functions
+│   ├── .exports            # Environment variables
+│   └── .bash_prompt        # Custom bash prompt
+│
+├── 🎨 Terminal Tools
+│   ├── .tmux.conf.local    # Tmux configuration
+│   ├── .gitmux.yaml        # Git status in tmux bar
+│   ├── .fzf.bash           # Fuzzy finder (Bash)
+│   └── .fzf.zsh            # Fuzzy finder (Zsh)
+│
+├── 📝 Git Configuration
+│   ├── .gitconfig          # Git global settings
+│   └── .gitignore          # Global gitignore patterns
+│
+└── 🚀 Installation Scripts
+    ├── bootstrap.sh         # Main installation script
+    └── install-requirements.sh # Dependency installer
+```
+
+---
+
+## 🚀 Quick Start
+
+### Prerequisites
+- macOS or Unix-based system
+- Zsh or Bash shell
+- Internet connection for dependency installation
+
+### Installation
+
+**1. Clone the repository**
+```bash
+git clone https://github.com/zkwokleung/dotfiles.git ~/Projects/dotfiles
+cd ~/Projects/dotfiles
+```
+
+**2. Install dependencies (recommended)**
+```bash
+./install-requirements.sh
+```
+
+**3. Apply dotfiles**
 ```bash
 ./bootstrap.sh
 ```
 
-### PowerShell
-
+**4. Restart your terminal or reload configuration**
 ```bash
-cd PowerShell && ./bootstrap.ps1
+source ~/.zshrc  # or ~/.bash_profile for bash
 ```
 
-## Dependencies
+---
 
-### MacOS & Unix
+## 📋 What Gets Installed
 
--   [tmux](https://github.com/tmux/tmux/wiki) with [Oh-my-tmux!](https://github.com/gpakosz/.tmux) - VERY USEFUL
--   [reattach-to-user-namespace](https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard)
--   [Gitmux](https://github.com/arl/gitmux) - Showing the git repos status in the tmux status bar
--   [tpm](https://github.com/tmux-plugins/tpm) - tmux plugin manager
--   [exa](https://github.com/ogham/exa) - Better ls
--   [pnpm](https://github.com/pnpm/pnpm) - Better npm
--   [NeoVim](https://github.com/neovim/neovim) - Text Editor
--   [zsh-completions](https://github.com/zsh-users/zsh-completions) - Completion in command line
--   [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions/tree/master) - Suggestions in command line
--   [zsh-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting/tree/master) - Command highlight
--   [The silver search](https://github.com/ggreer/the_silver_searcher) - File searcher
--   [fzf](https://github.com/junegunn/fzf)
--   [Copilot CLI](https://dev.to/github/stop-struggling-with-terminal-commands-github-copilot-in-the-cli-is-here-to-help-4pnb) - Copilot suggestions for CLI
+### 🔧 Essential Tools
+| Tool | Purpose | Why You'll Love It |
+|------|---------|-------------------|
+| **eza** | Modern `ls` replacement | Beautiful file listings with icons and colors |
+| **bat** | Enhanced `cat` | Syntax highlighting and git integration |
+| **fzf** | Fuzzy finder | Lightning-fast file and command searching |
+| **thefuck** | Command corrector | Fixes your typos automatically |
+| **tmux** | Terminal multiplexer | Persistent sessions and window management |
+| **ripgrep** | Fast text search | Blazingly fast grep alternative |
+| **diff-so-fancy** | Git diff beautifier | Makes git diffs actually readable |
 
-### NeoVim
+### 🎨 Shell Enhancements
+- **Smart aliases** - `ll`, `la`, `..`, `...`, `p` (projects), `d` (downloads)
+- **Git shortcuts** - `gs` (status), `ga` (add), `gc` (commit), `gl` (pretty log)
+- **Development helpers** - `v` (nvim), `py` (python3), quick directory navigation
+- **Fun utilities** - Weather display, ASCII art, loading animations
 
--   [lazy](https://github.com/folke/lazy.nvim) - Plugin manager
--   [manson](https://github.com/williamboman/mason.nvim) - Package manager
--   [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) - Syntax highlight
--   [nvim-dap](https://github.com/rcarriga/nvim-dap-ui) - Debugger
--   [wilder](https://github.com/gelguy/wilder.nvim) - Command Autocomplete
--   [tokyonight](https://github.com/folke/tokyonight.nvim) - Theme
--   [copilot.vim](https://github.com/github/copilot.vim) - Copilot
--   [Conquer of Completion](https://github.com/neoclide/coc.nvim) - Snippet for vim
--   [ast-grep](https://github.com/ast-grep/ast-grep) - A powerful linter for almost any languages
+---
 
-### PowerShell
+## 🎯 Key Features Explained
 
--   [PowerShell](https://apps.microsoft.com/detail/9MZ1SNWT0N5D)
--   [Oh-My-Posh](https://github.com/JanDeDobbeleer/oh-my-posh) - Makes the terminal looks nicer
--   [Get-ChildItemColor](https://github.com/joonro/Get-ChildItemColor) - ls with colors
--   [Terminal-Icons](https://github.com/devblackops/Terminal-Icons) - ls with icons
--   [PsGet](https://github.com/psget/psget)
--   [PSColor](https://github.com/Davlind/PSColor) - Color highlights for PS output
+### 🔄 Automatic Tmux Integration
+Every terminal session automatically starts or attaches to tmux, ensuring:
+- **Session persistence** - Your work survives terminal crashes
+- **Window management** - Organize your workspace efficiently
+- **Git status integration** - See repository status in your status bar
+
+### ⚡ Smart Aliases & Functions
+The dotfiles include 100+ carefully crafted aliases:
+
+```bash
+# Navigation
+alias ..="cd .."           # Go up one directory
+alias p="cd ~/Projects"    # Jump to projects folder
+alias dot="cd ~/dotfiles"  # Quick access to dotfiles
+
+# Enhanced commands
+alias ls='eza --icons'     # Beautiful file listings
+alias cat='bat'            # Syntax highlighted file viewing
+alias grep='rg'            # Fast text searching
+
+# Git workflow
+alias gs="git status"      # Quick status check
+alias gaa="git add . && git status"  # Add all and show status
+alias gl="git log --graph --pretty"  # Beautiful git history
+```
+
+### 🤖 AI-Powered CLI
+Integrated GitHub Copilot CLI for intelligent command suggestions:
+```bash
+alias gcs="gh copilot suggest"  # Get command suggestions
+alias gce="gh copilot explain"  # Explain complex commands
+```
+
+### 🎨 Enhanced Development Environment
+- **Multiple language support** - Pre-configured paths for Node.js, Python, Ruby, Flutter
+- **Package manager integration** - Optimized for npm, pnpm, yarn, and bun
+- **Smart editor integration** - NeoVim as default editor with proper PATH setup
+
+---
+
+## 🔧 Customization
+
+### Adding Your Own Aliases
+Edit `.aliases` file:
+```bash
+# Add your custom aliases
+alias myalias="your command here"
+```
+
+### Custom Functions
+Add functions to `.functions`:
+```bash
+function myfunction() {
+    # Your custom function
+    echo "Hello, World!"
+}
+```
+
+### Environment Variables
+Modify `.exports` for custom environment setup:
+```bash
+export MY_CUSTOM_VAR="value"
+export PATH="$PATH:/my/custom/path"
+```
+
+---
+
+## ⚠️ Important Notes
+
+- **Backup first**: This setup may overwrite existing configurations
+- **macOS optimized**: Primarily tested on macOS, may need adjustments for other Unix systems
+- **Personal preferences**: These are personal configurations - adapt them to your workflow
+- **Dependencies**: Run `install-requirements.sh` for the best experience
+
+---
+
+## 🤝 Contributing
+
+Found a bug or have a suggestion? Feel free to:
+1. Open an issue
+2. Submit a pull request
+3. Fork and customize for your needs
+
+---
+
+## 📄 License
+
+This project is based on [Mathias Bynens' dotfiles](https://github.com/mathiasbynens/dotfiles) with personal modifications.
+
+---
+
+<div align="center">
+
+**Happy coding! 🚀**
+
+*Made with ❤️ for productive terminal workflows*
+
+</div>
