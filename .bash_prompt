@@ -1,7 +1,0 @@
-if [[ "$OSTYPE" == "darwin"* ]]; then
-  # Mac
-  export PS1=" %F{cyan}%3~%f %F{white}%#%f "
-elif [[ "$OSTYPE" == "linux-gnu" ]]; then
-  # Linux
-  export PS1='\[\e[38;5;51m\]\W\[\e[0m\] % '
-fi

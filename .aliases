@@ -101,3 +101,12 @@ alias vim=nvim
 alias py=python3
 alias python=python3
 alias pip=pip3
+
+# * Zoxide - Smart directory navigation
+if command -v zoxide &>/dev/null; then
+    alias zi="zoxide query -i"      # Interactive selection
+    alias zq="zoxide query"         # Query for a path
+    alias za="zoxide add"           # Add path to database
+    alias zr="zoxide remove"        # Remove path from database
+    alias ze="zoxide edit"          # Edit the database
+fi

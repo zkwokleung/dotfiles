@@ -19,7 +19,9 @@
 
 ### 🎯 Core Enhancements
 - **🔄 Automatic tmux sessions** - Never lose your work again
+- **🚀 Modern Starship prompt** - Fast, customizable prompt with git integration and language detection
 - **🎨 Beautiful terminal styling** - Enhanced colors and icons with `eza`
+- **📁 Smart directory navigation** - Zoxide learns your habits for intelligent `cd` replacement
 - **⚡ Smart aliases** - 100+ time-saving command shortcuts
 - **🔍 Powerful search** - Integrated `fzf` and `ag` for lightning-fast file finding
 - **🤖 AI-powered CLI** - GitHub Copilot integration for command suggestions
@@ -103,6 +105,8 @@ source ~/.zshrc  # or ~/.bash_profile for bash
 ### 🔧 Essential Tools
 | Tool | Purpose | Why You'll Love It |
 |------|---------|-------------------|
+| **starship** | Modern prompt | Fast, customizable prompt with git integration |
+| **zoxide** | Smart directory jumper | Learns your habits for intelligent `cd` replacement |
 | **eza** | Modern `ls` replacement | Beautiful file listings with icons and colors |
 | **bat** | Enhanced `cat` | Syntax highlighting and git integration |
 | **fzf** | Fuzzy finder | Lightning-fast file and command searching |
@@ -113,6 +117,7 @@ source ~/.zshrc  # or ~/.bash_profile for bash
 
 ### 🎨 Shell Enhancements
 - **Smart aliases** - `ll`, `la`, `..`, `...`, `p` (projects), `d` (downloads)
+- **Intelligent navigation** - `z` (zoxide), `zi` (interactive), `cd` overridden with smart jumping
 - **Git shortcuts** - `gs` (status), `ga` (add), `gc` (commit), `gl` (pretty log)
 - **Development helpers** - `v` (nvim), `py` (python3), quick directory navigation
 - **Fun utilities** - Weather display, ASCII art, loading animations
@@ -120,6 +125,21 @@ source ~/.zshrc  # or ~/.bash_profile for bash
 ---
 
 ## 🎯 Key Features Explained
+
+### 📁 Smart Directory Navigation with Zoxide
+Zoxide learns your directory usage patterns and provides intelligent jumping:
+- **Smart `cd` replacement** - Jump to frequently used directories with partial names
+- **Interactive selection** - Use `zi` to choose from a list of matching directories
+- **Frequency-based ranking** - More frequently visited directories rank higher
+- **Cross-session learning** - Builds a database of your navigation patterns
+- **Fuzzy matching** - Type partial directory names and let zoxide find the best match
+
+**Example usage:**
+```bash
+z proj          # Jump to ~/Projects (or most frequent match)
+zi doc          # Interactive selection from directories matching "doc"
+z foo bar       # Jump to directory with both "foo" and "bar" in path
+```
 
 ### 🔄 Automatic Tmux Integration
 Every terminal session automatically starts or attaches to tmux, ensuring:
@@ -135,6 +155,11 @@ The dotfiles include 100+ carefully crafted aliases:
 alias ..="cd .."           # Go up one directory
 alias p="cd ~/Projects"    # Jump to projects folder
 alias dot="cd ~/dotfiles"  # Quick access to dotfiles
+
+# Zoxide smart navigation  
+alias zi="zoxide query -i" # Interactive directory selection
+# Note: z command for jumping is provided by zoxide init
+# cd is enhanced by zoxide automatically
 
 # Enhanced commands
 alias ls='eza --icons'     # Beautiful file listings

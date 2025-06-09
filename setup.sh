@@ -38,6 +38,8 @@ declare -a req=(
     "the_silver_searcher"
     "entr"
     "shortcat"
+    "starship"
+    "zoxide"
 )
 
 # Function to check if a package is installed

@@ -19,10 +19,23 @@ fi
 # Load the shell dotfiles, and then some:
 # * ~/.path can be used to extend `$PATH`.
 # * ~/.extra can be used for other settings you don’t want to commit.
-for file in ~/.{path,bash_prompt,exports,aliases,functions,extra,inputrc,extend}; do
+for file in ~/.{path,exports,aliases,functions,extra,inputrc,extend}; do
     [ -r "$file" ] && [ -f "$file" ] && source "$file"
 done
 unset file
+
+# Initialize zoxide
+if command -v zoxide &>/dev/null; then
+    eval "$(zoxide init zsh)"
+fi
+
+# Initialize Starship prompt
+if command -v starship &>/dev/null; then
+    eval "$(starship init zsh)"
+else
+    # Fallback to custom prompt if Starship is not available
+    [ -r ~/.bash_prompt ] && [ -f ~/.bash_prompt ] && source ~/.bash_prompt
+fi
 
 # Enter tmux on start
 if command -v tmux &>/dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ] && [[ ! "$TERM_PROGRAM" == "vscode" ]]; then
