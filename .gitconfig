@@ -35,8 +35,6 @@
 	autocorrect = prompt
 [diff]
 	algorithm = histogram
-[url "git@github.com"]
-	insteadOf = https://github.com
 [transfer]
 	fsckobjects = true
 [fetch]
