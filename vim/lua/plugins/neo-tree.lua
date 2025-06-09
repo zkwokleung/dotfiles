@@ -1,5 +1,0 @@
-return {
-    filters = {
-        fotfiles = true
-    }
-}
