@@ -84,27 +84,27 @@ tmux_conf_theme=enabled
 # tmux_conf_theme_colour_18="#202020" # lighter gray
 # tmux_conf_theme_colour_19="#003010" # dark green
 
-# winter theme
-tmux_conf_theme_colour_1="#080808"
-tmux_conf_theme_colour_2="#303030"
-tmux_conf_theme_colour_3="#8a8a8a"
-tmux_conf_theme_colour_4="#00afff"
-tmux_conf_theme_colour_5="#fef5ac"
-tmux_conf_theme_colour_6="#080808"
-tmux_conf_theme_colour_7="#0008c1"
-tmux_conf_theme_colour_8="#080808"
-tmux_conf_theme_colour_9="#f2f7a1"
-tmux_conf_theme_colour_10="#82c3ec"
-tmux_conf_theme_colour_11="#5fff00"
-tmux_conf_theme_colour_12="#8a8a8a"
-tmux_conf_theme_colour_13="#e4e4e4"
-tmux_conf_theme_colour_14="#06283d"
-tmux_conf_theme_colour_15="#1c315e"
-tmux_conf_theme_colour_16="#b1e1ef"
-tmux_conf_theme_colour_17="#f1f6f5"
-tmux_conf_theme_colour_18="#202020"
-tmux_conf_theme_colour_19="#003010"
-tmux_conf_theme_colour_20="#06283d"
+# ice and snow theme
+tmux_conf_theme_colour_1="#f0f8ff"   # alice blue (background)
+tmux_conf_theme_colour_2="#e6f3ff"   # light ice blue
+tmux_conf_theme_colour_3="#4682b4"   # steel blue (text)
+tmux_conf_theme_colour_4="#87ceeb"   # sky blue (active)
+tmux_conf_theme_colour_5="#ffffff"   # pure white (highlights)
+tmux_conf_theme_colour_6="#1e3a5f"   # dark blue (contrast text)
+tmux_conf_theme_colour_7="#2c5aa0"   # royal blue
+tmux_conf_theme_colour_8="#0f1419"   # very dark blue
+tmux_conf_theme_colour_9="#b0e0e6"   # powder blue
+tmux_conf_theme_colour_10="#add8e6"  # light blue
+tmux_conf_theme_colour_11="#00bfff"  # deep sky blue
+tmux_conf_theme_colour_12="#708090"  # slate gray
+tmux_conf_theme_colour_13="#f8f8ff"  # ghost white
+tmux_conf_theme_colour_14="#4169e1"  # royal blue (dark)
+tmux_conf_theme_colour_15="#6495ed"  # cornflower blue
+tmux_conf_theme_colour_16="#e0f6ff"  # light cyan
+tmux_conf_theme_colour_17="#ffffff"  # pure white
+tmux_conf_theme_colour_18="#d0e7ff"  # very light blue
+tmux_conf_theme_colour_19="#1e90ff"  # dodger blue
+tmux_conf_theme_colour_20="#191970"  # midnight blue
 
 # window style
 tmux_conf_theme_window_fg="default"
@@ -256,8 +256,8 @@ tmux_conf_theme_right_separator_sub='|'
 #     - #{uptime_s}
 #     - #{username}
 #     - #{username_ssh}
-tmux_conf_theme_status_left=" ❐ #S | ↑#{?uptime_y, #{uptime_y}y,}#{?uptime_d, #{uptime_d}d,}#{?uptime_h, #{uptime_h}h,}#{?uptime_m, #{uptime_m}m,} "
-tmux_conf_theme_status_right=" #{prefix}#{pairing}#{synchronized} #(gitmux -cfg $HOME/.config/tmux/gitmux.conf '#{pane_current_path}') | #{?battery_status,#{battery_status},}#{?battery_bar, #{battery_bar},}#{?battery_percentage, #{battery_percentage},} | 🕒 %R , 📅 %d %b | #{username}#{root} | #{hostname} "
+tmux_conf_theme_status_left=" ❄ #S | ⬆#{?uptime_y, #{uptime_y}y,}#{?uptime_d, #{uptime_d}d,}#{?uptime_h, #{uptime_h}h,}#{?uptime_m, #{uptime_m}m,} "
+tmux_conf_theme_status_right=" #{prefix}#{pairing}#{synchronized} #(gitmux -cfg $HOME/.config/tmux/gitmux.conf '#{pane_current_path}') | #{?battery_status,#{battery_status},}#{?battery_bar, #{battery_bar},}#{?battery_percentage, #{battery_percentage},} | ❄ %R , 🗓 %d %b | #{username}#{root} | #{hostname} "
 
 # status left style
 tmux_conf_theme_status_left_fg="$tmux_conf_theme_colour_6,$tmux_conf_theme_colour_7,$tmux_conf_theme_colour_8"
@@ -302,9 +302,9 @@ tmux_conf_theme_synchronized_fg="none"
 tmux_conf_theme_synchronized_bg="none"
 tmux_conf_theme_synchronized_attr="none"
 
-# battery bar symbols
-tmux_conf_battery_bar_symbol_full="◼"
-tmux_conf_battery_bar_symbol_empty="◻"
+# battery bar symbols - ice theme
+tmux_conf_battery_bar_symbol_full="❄"
+tmux_conf_battery_bar_symbol_empty="◦"
 #tmux_conf_battery_bar_symbol_full="♥"
 #tmux_conf_battery_bar_symbol_empty="·"
 
@@ -334,11 +334,11 @@ tmux_conf_battery_hbar_palette="gradient"
 tmux_conf_battery_vbar_palette="gradient"
 #tmux_conf_battery_vbar_palette="#d70000,#ff5f00,#5fff00"  # red, orange, green
 
-# symbols used to indicate whether battery is charging or discharging
+# symbols used to indicate whether battery is charging or discharging - ice theme
 # tmux_conf_battery_status_charging="↑"    # U+2191
 # tmux_conf_battery_status_discharging="↓" # U+2193
-tmux_conf_battery_status_charging="🔌"    # U+1F50C
-tmux_conf_battery_status_discharging="🔋" # U+1F50B
+tmux_conf_battery_status_charging="⚡"   # lightning
+tmux_conf_battery_status_discharging="🔋"  # battery
 
 # clock style (when you hit <prefix> + t)
 # you may want to use %I:%M %p in place of %R in tmux_conf_theme_status_right
