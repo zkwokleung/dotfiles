@@ -1,0 +1,56 @@
+{
+    "files.associations": {
+        "*.tmux.conf*": "tmux",
+        ".tmux.conf*": "tmux",
+        "tmux.conf*": "tmux",
+        "*.tmux": "tmux",
+        ".aliases": "shellscript",
+        ".functions": "shellscript",
+        ".exports": "shellscript",
+        ".extra": "shellscript",
+        ".path": "shellscript",
+        ".bash_prompt": "shellscript",
+        ".bashrc": "shellscript",
+        ".bash_profile": "shellscript",
+        ".zshrc": "shellscript",
+        ".zprofile": "shellscript",
+        ".gitconfig*": "gitconfig",
+        ".gitmux.yaml": "yaml",
+        ".gitmux.yml": "yaml",
+        "starship.toml": "toml",
+        ".inputrc": "shellscript",
+        "health-check.sh": "shellscript",
+        "setup.sh": "shellscript",
+        "bootstrap.sh": "shellscript"
+    },
+
+    "editor.semanticHighlighting.enabled": true,
+    "editor.bracketPairColorization.enabled": true,
+    "editor.guides.bracketPairs": true,
+    "editor.tabSize": 4,
+    "editor.insertSpaces": true,
+    "editor.detectIndentation": true,
+    "editor.renderWhitespace": "boundary",
+    "editor.rulers": [80, 120],
+    "editor.wordWrap": "bounded",
+    "editor.wordWrapColumn": 120,
+    "explorer.confirmDelete": false,
+    "explorer.confirmDragAndDrop": false,
+    "terminal.integrated.fontSize": 14,
+    "terminal.integrated.fontFamily": "FiraCode Nerd Font, Monaco, monospace",
+    "git.enableSmartCommit": true,
+    "git.confirmSync": false,
+    "git.autofetch": true,
+    "[shellscript]": {
+        "editor.tabSize": 2,
+        "editor.insertSpaces": true
+    },
+    "[yaml]": {
+        "editor.tabSize": 2,
+        "editor.insertSpaces": true
+    },
+    "[toml]": {
+        "editor.tabSize": 2,
+        "editor.insertSpaces": true
+    }
+}

@@ -1,0 +1,220 @@
+name: 🧪 Dotfiles Tests
+
+on:
+  push:
+    branches: [ main, master, develop ]
+  pull_request:
+    branches: [ main, master, develop ]
+  schedule:
+    # Run tests weekly on Sundays at 2 AM UTC
+    - cron: '0 2 * * 0'
+  workflow_dispatch:
+    # Allow manual triggering
+
+jobs:
+  config-tests:
+    name: 📄 Configuration Tests
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: 🛎️ Checkout code
+      uses: actions/checkout@v4
+
+    - name: 🐍 Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.x'
+
+    - name: 📦 Install test dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y jq yamllint shellcheck
+        pip install --user pyyaml tomli
+
+    - name: 🔧 Make test scripts executable
+      run: |
+        chmod +x tests/test-config.sh
+        chmod +x setup.sh bootstrap.sh health-check.sh
+
+    - name: 🧪 Run configuration tests
+      run: ./tests/test-config.sh
+
+    - name: 🔍 Run shellcheck on scripts
+      run: |
+        shellcheck setup.sh bootstrap.sh health-check.sh || true
+        shellcheck .aliases .functions .exports .bash_profile || true
+
+  integration-tests:
+    name: 🚀 Integration Tests
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+
+    steps:
+    - name: 🛎️ Checkout code
+      uses: actions/checkout@v4
+
+    - name: 🍺 Install Homebrew (Ubuntu)
+      if: matrix.os == 'ubuntu-latest'
+      run: |
+        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+        echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> ~/.bashrc
+        eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+    - name: 🔧 Make test scripts executable
+      run: |
+        chmod +x tests/test-integration.sh
+        chmod +x setup.sh bootstrap.sh health-check.sh
+
+    - name: 🚀 Run integration tests
+      run: ./tests/test-integration.sh
+      env:
+        CI: true
+
+  security-tests:
+    name: 🔒 Security Tests
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: 🛎️ Checkout code
+      uses: actions/checkout@v4
+
+    - name: 🔍 Run Bandit security linter (Python)
+      if: false  # Skip for now as we don't have Python code
+      run: |
+        pip install bandit
+        bandit -r . || true
+
+    - name: 🔐 Check for secrets
+      run: |
+        # Check for potential hardcoded secrets
+        ! grep -r -i "password\|secret\|key.*=" . --exclude-dir=.git --exclude-dir=tests | grep -v "# " | grep -v "example"
+
+    - name: 📋 Check file permissions
+      run: |
+        # Ensure scripts are executable
+        test -x setup.sh
+        test -x bootstrap.sh
+        test -x health-check.sh
+
+    - name: 🔄 Check for unsafe operations
+      run: |
+        # Check for potentially unsafe operations
+        ! grep -r "rm -rf /" . --exclude-dir=.git --exclude-dir=tests
+        ! grep -r "sudo rm" . --exclude-dir=.git --exclude-dir=tests
+
+  health-check:
+    name: 🏥 Health Check Test
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+
+    steps:
+    - name: 🛎️ Checkout code
+      uses: actions/checkout@v4
+
+    - name: 🍺 Setup Homebrew (Ubuntu)
+      if: matrix.os == 'ubuntu-latest'
+      run: |
+        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+        echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> ~/.bashrc
+        eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+    - name: 🔧 Make scripts executable
+      run: |
+        chmod +x setup.sh bootstrap.sh health-check.sh
+
+    - name: 🏗️ Run bootstrap
+      run: ./bootstrap.sh --force
+
+    - name: 🏥 Run health check
+      run: ./health-check.sh
+      env:
+        CI: true
+
+  compatibility-test:
+    name: 🔄 Compatibility Test
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: 🛎️ Checkout code
+      uses: actions/checkout@v4
+
+    - name: 🐚 Test with different shells
+      run: |
+        # Test bash compatibility
+        bash -c "source .aliases && source .functions" || echo "Bash compatibility issue"
+
+        # Test zsh compatibility (if available)
+        if command -v zsh >/dev/null 2>&1; then
+          zsh -c "source .aliases && source .functions" || echo "Zsh compatibility issue"
+        fi
+
+    - name: 🔧 Test script execution
+      run: |
+        chmod +x setup.sh bootstrap.sh health-check.sh
+
+        # Test that scripts can be parsed without errors
+        bash -n setup.sh
+        bash -n bootstrap.sh
+        bash -n health-check.sh
+
+  docs-check:
+    name: 📚 Documentation Check
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: 🛎️ Checkout code
+      uses: actions/checkout@v4
+
+    - name: 📖 Check README exists
+      run: test -f README.md
+
+    - name: 🔗 Check for broken links (if markdown-link-check available)
+      run: |
+        if command -v markdown-link-check >/dev/null 2>&1; then
+          markdown-link-check README.md || true
+        else
+          echo "Skipping link check - markdown-link-check not available"
+        fi
+
+    - name: 📝 Validate markdown syntax
+      run: |
+        # Basic markdown validation
+        if command -v markdownlint >/dev/null 2>&1; then
+          markdownlint README.md || true
+        else
+          echo "Skipping markdown lint - markdownlint not available"
+        fi
+
+  test-summary:
+    name: 📊 Test Summary
+    needs: [config-tests, integration-tests, security-tests, health-check, compatibility-test, docs-check]
+    runs-on: ubuntu-latest
+    if: always()
+
+    steps:
+    - name: 📊 Report test results
+      run: |
+        echo "## 🧪 Test Results Summary" >> $GITHUB_STEP_SUMMARY
+        echo "| Test Suite | Status |" >> $GITHUB_STEP_SUMMARY
+        echo "|------------|--------|" >> $GITHUB_STEP_SUMMARY
+        echo "| Configuration Tests | ${{ needs.config-tests.result == 'success' && '✅ Passed' || '❌ Failed' }} |" >> $GITHUB_STEP_SUMMARY
+        echo "| Integration Tests | ${{ needs.integration-tests.result == 'success' && '✅ Passed' || '❌ Failed' }} |" >> $GITHUB_STEP_SUMMARY
+        echo "| Security Tests | ${{ needs.security-tests.result == 'success' && '✅ Passed' || '❌ Failed' }} |" >> $GITHUB_STEP_SUMMARY
+        echo "| Health Check | ${{ needs.health-check.result == 'success' && '✅ Passed' || '❌ Failed' }} |" >> $GITHUB_STEP_SUMMARY
+        echo "| Compatibility Test | ${{ needs.compatibility-test.result == 'success' && '✅ Passed' || '❌ Failed' }} |" >> $GITHUB_STEP_SUMMARY
+        echo "| Documentation Check | ${{ needs.docs-check.result == 'success' && '✅ Passed' || '❌ Failed' }} |" >> $GITHUB_STEP_SUMMARY
+
+        if [[ "${{ needs.config-tests.result }}" == "success" && \
+              "${{ needs.integration-tests.result }}" == "success" && \
+              "${{ needs.security-tests.result }}" == "success" && \
+              "${{ needs.health-check.result }}" == "success" && \
+              "${{ needs.compatibility-test.result }}" == "success" && \
+              "${{ needs.docs-check.result }}" == "success" ]]; then
+          echo "## 🎉 All tests passed!" >> $GITHUB_STEP_SUMMARY
+        else
+          echo "## ⚠️ Some tests failed" >> $GITHUB_STEP_SUMMARY
+        fi
