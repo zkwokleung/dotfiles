@@ -40,6 +40,7 @@ declare -a req=(
     "shortcat"
     "starship"
     "zoxide"
+    "lazygit"
 )
 
 # Function to check if a package is installed
