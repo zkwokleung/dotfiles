@@ -8,25 +8,35 @@ cd "$(dirname "${BASH_SOURCE}")"
 function doIt() {
     printf "\e[33m%s\e[0m\n" "# Updating dotfiles..."
 
-    # Copy main dotfiles, but include the shell config files
-    rsync --exclude ".git/" \
-        --exclude ".DS_Store" \
-        --exclude ".osx" \
-        --exclude "bootstrap.sh" \
-        --exclude "README.md" \
-        --exclude "LICENSE-MIT.txt" \
-        --exclude ".tmux.conf.local" \
-        --exclude ".gitmux.yaml" \
-        --exclude "starship.toml" \
-        --exclude ".vscode/" \
-        --exclude ".config/" \
-        --exclude ".trunk" \
-        --exclude "setup.sh" \
-        --exclude "health-check.sh" \
-        -avh --no-perms . ~ || {
-        printf "\e[31m%s\e[0m\n" "Error: Failed to copy dotfiles"
-        exit 1
-    }
+    # List of files/directories to exclude from symlinking
+    EXCLUDES=(
+        "." ".." ".git" ".DS_Store" ".osx" "bootstrap.sh" "README.md" "LICENSE-MIT.txt" \
+        ".tmux.conf.local" ".gitmux.yaml" "starship.toml" ".vscode" ".config" ".trunk" \
+        "setup.sh" "health-check.sh"
+    )
+
+    for src in .* *; do
+        skip=false
+        for exclude in "${EXCLUDES[@]}"; do
+            if [[ "$src" == "$exclude" ]]; then
+                skip=true
+                break
+            fi
+        done
+        if $skip; then
+            continue
+        fi
+        dest="$HOME/$src"
+        # If destination exists and is not a symlink to the same file, back it up
+        if [ -e "$dest" ] && [ ! -L "$dest" ]; then
+            mv "$dest" "$dest.bak"
+            printf "\e[33m%s\e[0m\n" "Backed up $dest to $dest.bak"
+        elif [ -L "$dest" ]; then
+            rm "$dest"
+        fi
+        ln -sfn "$PWD/$src" "$dest"
+        printf "\e[32m%s\e[0m\n" "Linked $src -> $dest"
+    done
 
     printf "\e[33m%s\e[0m\n" "# Updating tmux configuration..."
 
@@ -36,50 +46,36 @@ function doIt() {
         exit 1
     }
 
-    # Copy tmux configuration files
-    rsync -avh .tmux.conf.local ~/.config/tmux/tmux.conf.local || {
-        printf "\e[31m%s\e[0m\n" "Error: Failed to copy tmux.conf.local"
-        exit 1
-    }
+    # Symlink tmux configuration files
+    for pair in ".tmux.conf.local:~/.config/tmux/tmux.conf.local" ".gitmux.yaml:~/.config/tmux/gitmux.conf"; do
+        src="${pair%%:*}"
+        dest="${pair##*:}"
+        # Expand ~ in dest
+        eval dest="$dest"
+        if [ -e "$dest" ] && [ ! -L "$dest" ]; then
+            mv "$dest" "$dest.bak"
+            printf "\e[33m%s\e[0m\n" "Backed up $dest to $dest.bak"
+        elif [ -L "$dest" ]; then
+            rm "$dest"
+        fi
+        ln -sfn "$PWD/$src" "$dest"
+        printf "\e[32m%s\e[0m\n" "Linked $src -> $dest"
+    done
 
-    rsync -avh .gitmux.yaml ~/.config/tmux/gitmux.conf || {
-        printf "\e[31m%s\e[0m\n" "Error: Failed to copy gitmux.yaml"
-        exit 1
-    }
-
-    printf "\e[33m%s\e[0m\n" "# Updating Starship configuration..."
-
-    # Copy Starship configuration
+    # Symlink Starship configuration
     if [ -f starship.toml ]; then
-        rsync -avh starship.toml ~/.config/starship.toml || {
-            printf "\e[31m%s\e[0m\n" "Error: Failed to copy starship.toml"
-            exit 1
-        }
-        printf "\e[32m%s\e[0m\n" "✅ Starship configuration updated"
+        dest="$HOME/.config/starship.toml"
+        mkdir -p "$HOME/.config"
+        if [ -e "$dest" ] && [ ! -L "$dest" ]; then
+            mv "$dest" "$dest.bak"
+            printf "\e[33m%s\e[0m\n" "Backed up $dest to $dest.bak"
+        elif [ -L "$dest" ]; then
+            rm "$dest"
+        fi
+        ln -sfn "$PWD/starship.toml" "$dest"
+        printf "\e[32m%s\e[0m\n" "Linked starship.toml -> $dest"
     else
         printf "\e[33m%s\e[0m\n" "# starship.toml not found, skipping Starship configuration"
-    fi
-
-    printf "\e[33m%s\e[0m\n" "# Updating IDE configurations..."
-
-    # Copy VS Code settings
-    if [ -d .vscode ]; then
-        mkdir -p ~/.vscode
-        rsync -avh .vscode/ ~/.vscode/ || {
-            printf "\e[31m%s\e[0m\n" "Error: Failed to copy VS Code settings"
-            exit 1
-        }
-        printf "\e[32m%s\e[0m\n" "✅ VS Code settings updated"
-    fi
-
-    # Copy Neovim configuration
-    if [ -d .config/nvim ]; then
-        mkdir -p ~/.config/nvim
-        rsync -avh .config/nvim/ ~/.config/nvim/ || {
-            printf "\e[31m%s\e[0m\n" "Error: Failed to copy Neovim configuration"
-            exit 1
-        }
-        printf "\e[32m%s\e[0m\n" "✅ Neovim configuration updated"
     fi
 
     printf "\e[33m%s\e[0m\n" "# Configuring git..."
