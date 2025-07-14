@@ -87,6 +87,9 @@ alias glom="git pull origin main"
 alias gpo="git push origin"
 alias glo="git pull origin"
 
+# * Lazygit
+alias lg=lazygit
+
 # * Copilot
 alias copilot="gh copilot"
 alias gcs="gh copilot suggest"
@@ -96,6 +99,7 @@ alias gce="gh copilot explain"
 alias v=nvim
 alias vi=nvim
 alias vim=nvim
+alias v.="nvim ."
 
 # * Code
 alias c="cursor"
