@@ -68,7 +68,7 @@ function current-whether() {
     while true;
     do
         clear
-        curl -s wttr.in | head -7 
+        curl -s wttr.in | head -7
         echo "\n"
         echo "Last Updated: $(date)"
         sleep 1800
@@ -79,7 +79,7 @@ function future-whether() {
     while true;
     do
         clear
-        curl -s wttr.in | head -27 | tail -20 
+        curl -s wttr.in | head -27 | tail -20
         echo "\n"
         echo "Last Updated: $(date)"
         sleep 3000
@@ -87,7 +87,7 @@ function future-whether() {
 }
 
 function moon-phase() {
-    while true; 
+    while true;
     do
         clear
         curl wttr.in/moon | head -24
@@ -117,7 +117,7 @@ function loading() {
     printf "%s\n" "Loading Brain Cells. . ."
 
     MAX=100
-     
+
     while true; do
         for i in $(seq 0 $MAX); do
             printf  "%s" "["
@@ -125,7 +125,7 @@ function loading() {
                 printf "%s" "█"
             done
             for _ in $(seq 0 $(($MAX-$i))); do
-                printf " " 
+                printf " "
             done
             printf "%s" "]"
             sleep $(awk -v n=10 -v seed="$RANDOM" 'BEGIN { srand(seed); printf("%.4f\n", rand()%.7f) }')
@@ -134,4 +134,30 @@ function loading() {
         curl "http://www.randomnumberapi.com/api/v1.0/randomstring?min=$MAX"
         sleep 1
     done
+}
+
+function ovpn() {
+    if [ $# -eq 0 ]; then
+        echo "Usage: ovpn <country_code>"
+        echo "Example: ovpn us, ovpn sg"
+        return 1
+    fi
+
+    local country_code="$1"
+    local ovpn_dir="$HOME/OpenVPN"
+
+    if [ ! -d "$ovpn_dir" ]; then
+        echo "Error: Directory $ovpn_dir does not exist"
+        return 1
+    fi
+
+    local ovpn_file=$(find "$ovpn_dir" -name "${country_code}*.ovpn" | head -1)
+
+    if [ -z "$ovpn_file" ]; then
+        echo "Error: No .ovpn file found starting with '$country_code' in $ovpn_dir"
+        return 1
+    fi
+
+    echo "Connecting to VPN using: $(basename "$ovpn_file")"
+    cd "$ovpn_dir" && sudo openvpn "$ovpn_file"
 }
