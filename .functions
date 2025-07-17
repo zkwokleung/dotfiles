@@ -31,12 +31,6 @@ function :q() {
     done
 }
 
-# NPM functions
-function nbd() {
-    npm run build
-    npm run deploy
-}
-
 # Conda
 function conact() {
     conda activate $1
@@ -50,18 +44,6 @@ function condeact() {
 
 function conin() {
     conda info --envs
-}
-
-function doge() {
-    cd ~/Pictures/Animals
-    ascii-image-converter polite-dog.png
-    cd - >0
-}
-
-function capy() {
-    cd ~/Pictures/Animals
-    ascii-image-converter capy-1.jpeg
-    cd - >0
 }
 
 function current-whether() {

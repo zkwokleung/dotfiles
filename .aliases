@@ -102,9 +102,8 @@ alias vim=nvim
 alias v.="nvim ."
 
 # * Code
-alias c="cursor"
-alias c.="cursor ."
-
+alias c="code"
+alias c.="code ."
 
 # * Python
 alias py=python3
