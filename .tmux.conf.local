@@ -397,6 +397,8 @@ bind r respawn-pane -k
 # sync panes
 bind C-y set-window-option synchronize-panes
 
+# swap panes
+bind S swap-pane -U
 
 # -- tpm -----------------------------------------------------------------------
 
