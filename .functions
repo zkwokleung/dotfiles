@@ -1,17 +1,56 @@
-# Change working directory to the top-most Finder window location
+# Change working directory to the top-most file manager window location
 function cdf() { # short for `cdfinder`
-    cd "$(osascript -e 'tell app "Finder" to POSIX path of (insertion location as alias)')"
+    if [[ "$OSTYPE" == "darwin"* ]]; then
+        # macOS: Use Finder via AppleScript
+        cd "$(osascript -e 'tell app "Finder" to POSIX path of (insertion location as alias)')"
+    elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
+        # Linux: Try to get current directory from various file managers
+        if command -v nautilus &>/dev/null && pgrep -x nautilus >/dev/null; then
+            # GNOME Nautilus - fallback to home directory
+            echo "Linux file manager integration not available. Use 'cd' directly."
+            return 1
+        elif command -v dolphin &>/dev/null && pgrep -x dolphin >/dev/null; then
+            # KDE Dolphin - fallback to home directory
+            echo "Linux file manager integration not available. Use 'cd' directly."
+            return 1
+        else
+            echo "No supported file manager found. Use 'cd' directly."
+            return 1
+        fi
+    else
+        echo "Unsupported platform: $OSTYPE"
+        return 1
+    fi
 }
 
 # Change working directory and list contents
 function cdls() { cd "$@" && ls; }
 
-# Open current working directory in Finder or optionally open the given location
+# Open current working directory in file manager or optionally open the given location
 function o() {
-    if [ $# -eq 0 ]; then
-        open .
+    if [[ "$OSTYPE" == "darwin"* ]]; then
+        # macOS: Use the 'open' command
+        if [ $# -eq 0 ]; then
+            open .
+        else
+            open "$@"
+        fi
+    elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
+        # Linux: Use xdg-open (universal opener)
+        if [ $# -eq 0 ]; then
+            xdg-open . 2>/dev/null || {
+                echo "xdg-open not available. Please install xdg-utils or use your file manager directly."
+                return 1
+            }
+        else
+            xdg-open "$@" 2>/dev/null || {
+                echo "xdg-open not available. Please install xdg-utils."
+                return 1
+            }
+        fi
     else
-        open "$@"
+        echo "Unsupported platform: $OSTYPE"
+        return 1
     fi
 }
 

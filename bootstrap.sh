@@ -103,7 +103,11 @@ function doIt() {
         git config --global interactive.diffFilter "diff-so-fancy --patch"
     else
         printf "\e[33m%s\e[0m\n" "# diff-so-fancy not found, skipping pager configuration"
-        printf "\e[33m%s\e[0m\n" "# Run 'brew install diff-so-fancy' to enable enhanced git diffs"
+        if [[ "$OSTYPE" == "darwin"* ]]; then
+            printf "\e[33m%s\e[0m\n" "# Run 'brew install diff-so-fancy' to enable enhanced git diffs"
+        else
+            printf "\e[33m%s\e[0m\n" "# Install diff-so-fancy using your package manager to enable enhanced git diffs"
+        fi
     fi
 
     printf "\e[32m%s\e[0m\n" "✅ Dotfiles installation completed successfully!"
