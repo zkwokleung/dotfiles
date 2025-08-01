@@ -10,7 +10,7 @@ export NVM_DIR="$HOME/.nvm"
 # Mac
 if [[ "$OSTYPE" == "darwin"* ]]; then
   # pnpm
-  export PNPM_HOME="/Users/zkwokleung/Library/pnpm"
+  export PNPM_HOME="$HOME/Library/pnpm"
   case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
