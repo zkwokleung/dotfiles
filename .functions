@@ -182,3 +182,15 @@ function ovpn() {
     echo "Connecting to VPN using: $(basename "$ovpn_file")"
     cd "$ovpn_dir" && sudo openvpn "$ovpn_file"
 }
+
+# Claude Code functions
+function cl() {
+    if [ $# -eq 0 ]; then
+        claude
+    else
+        local config_name="$1"
+        export CLAUDE_CODE_DIR="~/.claude-${config_name}"
+        claude
+        unset CLAUDE_CODE_DIR
+    fi
+}

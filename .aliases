@@ -115,9 +115,6 @@ alias vi=nvim
 alias vim=nvim
 alias v.="nvim ."
 
-# * Claude
-alias cl=claude
-
 # * Code
 alias c="code"
 alias c.="code ."
