@@ -4,7 +4,7 @@
 	process = git-lfs filter-process
 	required = true
 [user]
-	name = Andrew SZETO
+	name = Andrew SZE-TO
 	email = zkwokleung@gmail.com
 [core]
 	excludesfile = /Users/zkwokleung/.gitignore
