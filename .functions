@@ -85,7 +85,7 @@ function conin() {
     conda info --envs
 }
 
-function current-whether() {
+function weather() {
     while true;
     do
         clear
@@ -96,7 +96,7 @@ function current-whether() {
     done
 }
 
-function future-whether() {
+function future-weather() {
     while true;
     do
         clear
