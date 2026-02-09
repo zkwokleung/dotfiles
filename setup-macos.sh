@@ -54,9 +54,19 @@ declare -a req=(
   "lazygit"
 )
 
+declare -a cask_req=(
+  "linearmouse"
+  "alt-tab"
+)
+
 # Function to check if a package is installed
 check_brew_package() {
   brew list "$1" &>/dev/null
+}
+
+# Function to check if a cask package is installed
+check_brew_cask() {
+  brew list --cask "$1" &>/dev/null
 }
 
 # Check if brew command exists
@@ -85,6 +95,7 @@ fi
 # Install requirements
 print_info "Installing required packages..."
 failed_packages=()
+failed_casks=()
 
 for package in "${req[@]}"; do
   if ! check_brew_package "$package"; then
@@ -102,16 +113,19 @@ done
 
 # Install cask packages
 print_info "Installing GUI applications..."
-if ! check_brew_package "linearmouse"; then
-  print_info "Installing linearmouse..."
-  if brew install --cask linearmouse; then
-    print_success "Installed linearmouse"
+for cask in "${cask_req[@]}"; do
+  if ! check_brew_cask "$cask"; then
+    print_info "Installing $cask..."
+    if brew install --cask "$cask"; then
+      print_success "Installed $cask"
+    else
+      print_warning "Failed to install $cask (this is optional)"
+      failed_casks+=("$cask")
+    fi
   else
-    print_warning "Failed to install linearmouse (this is optional)"
+    print_info "$cask is already installed"
   fi
-else
-  print_info "linearmouse is already installed"
-fi
+done
 
 # Install Node.js via Homebrew (alternative to NVM for macOS)
 if ! check_brew_package "node"; then
@@ -145,6 +159,14 @@ if [ ${#failed_packages[@]} -gt 0 ]; then
   print_warning "The following packages failed to install:"
   for package in "${failed_packages[@]}"; do
     printf "  - %s\n" "$package"
+  done
+  print_info "You may need to install these manually"
+fi
+
+if [ ${#failed_casks[@]} -gt 0 ]; then
+  print_warning "The following cask packages failed to install:"
+  for cask in "${failed_casks[@]}"; do
+    printf "  - %s\n" "$cask"
   done
   print_info "You may need to install these manually"
 fi
