@@ -69,6 +69,70 @@ check_brew_cask() {
   brew list --cask "$1" &>/dev/null
 }
 
+# Install Node.js tooling in one place (nvm, yarn, pnpm, bun)
+install_node_ecosystem() {
+  print_info "Installing Node.js ecosystem (nvm, yarn, pnpm, bun)..."
+
+  # Install NVM
+  if [[ ! -d "$HOME/.nvm" ]]; then
+    print_info "Installing NVM..."
+    if curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.4/install.sh | bash; then
+      print_success "NVM installed successfully"
+    else
+      print_error "Failed to install NVM"
+      return
+    fi
+  else
+    print_info "NVM is already installed"
+  fi
+
+  # Source NVM for the current session
+  export NVM_DIR="$HOME/.nvm"
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+
+  if command -v nvm &>/dev/null; then
+    print_info "Installing Node.js LTS via NVM..."
+    if nvm install --lts && nvm use --lts; then
+      print_success "Node.js LTS is ready"
+    else
+      print_warning "Failed to install/use Node.js LTS via NVM"
+    fi
+  else
+    print_warning "NVM is not available in current shell; skipping Node.js, yarn, and pnpm setup"
+  fi
+
+  # Install yarn and pnpm
+  if command -v node &>/dev/null; then
+    if command -v corepack &>/dev/null; then
+      print_info "Enabling Corepack for yarn and pnpm..."
+      corepack enable || print_warning "Failed to enable Corepack"
+      corepack prepare yarn@stable --activate || print_warning "Failed to activate yarn via Corepack"
+      corepack prepare pnpm@latest --activate || print_warning "Failed to activate pnpm via Corepack"
+    else
+      print_warning "Corepack not found; falling back to npm global install for yarn and pnpm"
+      command -v yarn &>/dev/null || npm install -g yarn || print_warning "Failed to install yarn"
+      command -v pnpm &>/dev/null || npm install -g pnpm || print_warning "Failed to install pnpm"
+    fi
+
+    command -v yarn &>/dev/null && print_success "yarn is available" || print_warning "yarn is not available"
+    command -v pnpm &>/dev/null && print_success "pnpm is available" || print_warning "pnpm is not available"
+  fi
+
+  # Install bun
+  if ! command -v bun &>/dev/null; then
+    print_info "Installing bun..."
+    if curl -fsSL https://bun.sh/install | bash; then
+      print_success "Bun installed successfully"
+      export BUN_INSTALL="$HOME/.bun"
+      export PATH="$BUN_INSTALL/bin:$PATH"
+    else
+      print_warning "Failed to install bun"
+    fi
+  else
+    print_info "Bun is already installed"
+  fi
+}
+
 # Check if brew command exists
 if ! command -v brew &>/dev/null; then
   print_info "Homebrew not found, installing..."
@@ -127,32 +191,8 @@ for cask in "${cask_req[@]}"; do
   fi
 done
 
-# Install Node.js via Homebrew (alternative to NVM for macOS)
-if ! check_brew_package "node"; then
-  print_info "Installing Node.js..."
-  if brew install node; then
-    print_success "Installed Node.js"
-  else
-    print_warning "Failed to install Node.js"
-  fi
-else
-  print_info "Node.js is already installed"
-fi
-
-# Install bun
-print_info "Installing bun..."
-if ! command -v bun &>/dev/null; then
-  if curl -fsSL https://bun.sh/install | bash; then
-    print_success "Bun installed successfully"
-    print_info "Adding bun to PATH for current session..."
-    export BUN_INSTALL="$HOME/.bun"
-    export PATH="$BUN_INSTALL/bin:$PATH"
-  else
-    print_error "Failed to install bun"
-  fi
-else
-  print_info "Bun is already installed"
-fi
+# Install Node.js tooling
+install_node_ecosystem
 
 # Report any failed packages
 if [ ${#failed_packages[@]} -gt 0 ]; then
