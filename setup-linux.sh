@@ -116,90 +116,223 @@ update_packages() {
   esac
 }
 
-# Update package lists
-print_info "Updating package lists..."
-update_packages
+install_package_manager_dependencies() {
+  # Update package lists
+  print_info "Updating package lists..."
+  update_packages
 
-# Install essential development tools
-print_info "Installing essential development tools..."
+  # Install essential development tools
+  print_info "Installing essential development tools..."
 
-essential_tools=()
-case $PKG_MANAGER in
-"apt")
-  essential_tools=(
-    "build-essential"
-    "software-properties-common"
-    "apt-transport-https"
-    "ca-certificates"
-    "gnupg"
-    "lsb-release"
-    "curl"
-    "wget"
-    "git"
-    "zsh"
-    "unzip"
-    "tar"
-    "gzip"
-    "python3"
-    "python3-pip"
-    "python3-dev"
-    "python3-setuptools"
-    "python3-venv"
-  )
-  ;;
-"dnf" | "yum")
-  essential_tools=(
-    "gcc"
-    "gcc-c++"
-    "make"
-    "kernel-devel"
-    "curl"
-    "wget"
-    "git"
-    "zsh"
-    "unzip"
-    "tar"
-    "gzip"
-    "python3"
-    "python3-pip"
-    "python3-devel"
-    "openssl-devel"
-    "libffi-devel"
-    "bzip2-devel"
-    "readline-devel"
-    "sqlite-devel"
-  )
-  ;;
-"pacman")
-  essential_tools=(
-    "base-devel"
-    "curl"
-    "wget"
-    "git"
-    "zsh"
-    "unzip"
-    "tar"
-    "gzip"
-    "python"
-    "python-pip"
-  )
-  ;;
-esac
+  essential_tools=()
+  case $PKG_MANAGER in
+  "apt")
+    essential_tools=(
+      "build-essential"
+      "software-properties-common"
+      "apt-transport-https"
+      "ca-certificates"
+      "gnupg"
+      "lsb-release"
+      "curl"
+      "wget"
+      "git"
+      "zsh"
+      "unzip"
+      "tar"
+      "gzip"
+      "python3"
+      "python3-pip"
+      "python3-dev"
+      "python3-setuptools"
+      "python3-venv"
+    )
+    ;;
+  "dnf" | "yum")
+    essential_tools=(
+      "gcc"
+      "gcc-c++"
+      "make"
+      "kernel-devel"
+      "curl"
+      "wget"
+      "git"
+      "zsh"
+      "unzip"
+      "tar"
+      "gzip"
+      "python3"
+      "python3-pip"
+      "python3-devel"
+      "openssl-devel"
+      "libffi-devel"
+      "bzip2-devel"
+      "readline-devel"
+      "sqlite-devel"
+    )
+    ;;
+  "pacman")
+    essential_tools=(
+      "base-devel"
+      "curl"
+      "wget"
+      "git"
+      "zsh"
+      "unzip"
+      "tar"
+      "gzip"
+      "python"
+      "python-pip"
+    )
+    ;;
+  esac
 
-failed_packages=()
-for package in "${essential_tools[@]}"; do
-  if ! check_linux_package "$package"; then
-    print_info "Installing $package..."
-    if install_linux_package "$package"; then
-      print_success "Installed $package"
+  for package in "${essential_tools[@]}"; do
+    if ! check_linux_package "$package"; then
+      print_info "Installing $package..."
+      if install_linux_package "$package"; then
+        print_success "Installed $package"
+      else
+        print_error "Failed to install $package"
+        failed_packages+=("$package")
+      fi
     else
-      print_error "Failed to install $package"
-      failed_packages+=("$package")
+      print_info "$package is already installed"
+    fi
+  done
+
+  # Install dotfiles-specific packages
+  print_info "Installing dotfiles-specific packages..."
+
+  dotfiles_packages=()
+  case $PKG_MANAGER in
+  "apt")
+    dotfiles_packages=(
+      "tldr"
+      "bat"
+      "tmux"
+      "fzf"
+      "fontconfig"
+      "ripgrep"
+      "silversearcher-ag"
+      "entr"
+    )
+    ;;
+  "dnf" | "yum")
+    dotfiles_packages=(
+      "bat"
+      "neovim"
+      "tmux"
+      "fzf"
+      "fontconfig"
+      "ripgrep"
+      "the_silver_searcher"
+      "entr"
+    )
+    ;;
+  "pacman")
+    dotfiles_packages=(
+      "bat"
+      "neovim"
+      "tmux"
+      "fzf"
+      "fontconfig"
+      "ripgrep"
+      "the_silver_searcher"
+      "entr"
+    )
+    ;;
+  esac
+
+  for package in "${dotfiles_packages[@]}"; do
+    if ! check_linux_package "$package"; then
+      print_info "Installing $package..."
+      if install_linux_package "$package"; then
+        print_success "Installed $package"
+      else
+        print_error "Failed to install $package"
+        failed_packages+=("$package")
+      fi
+    else
+      print_info "$package is already installed"
+    fi
+  done
+}
+
+# Install Node.js tooling in one place (nvm, yarn, pnpm, bun)
+install_node_ecosystem() {
+  print_info "Installing Node.js ecosystem (nvm, yarn, pnpm, bun)..."
+
+  # Install NVM
+  if [[ ! -d "$HOME/.nvm" ]]; then
+    print_info "Installing NVM..."
+    if curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.4/install.sh | bash; then
+      print_success "NVM installed successfully"
+    else
+      print_warning "Failed to install NVM"
+      failed_packages+=("nvm")
+      return
     fi
   else
-    print_info "$package is already installed"
+    print_info "NVM is already installed"
   fi
-done
+
+  # Source NVM for current session
+  export NVM_DIR="$HOME/.nvm"
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+
+  if command -v nvm &>/dev/null; then
+    print_info "Installing Node.js LTS via NVM..."
+    if nvm install --lts && nvm use --lts; then
+      print_success "Node.js LTS is ready"
+    else
+      print_warning "Failed to install/use Node.js LTS via NVM"
+      failed_packages+=("nodejs-lts")
+    fi
+  else
+    print_warning "NVM is not available in current shell; skipping Node.js, yarn, and pnpm setup"
+  fi
+
+  # Install yarn and pnpm
+  if command -v node &>/dev/null; then
+    if command -v corepack &>/dev/null; then
+      print_info "Enabling Corepack for yarn and pnpm..."
+      corepack enable || print_warning "Failed to enable Corepack"
+      corepack prepare yarn@stable --activate || print_warning "Failed to activate yarn via Corepack"
+      corepack prepare pnpm@latest --activate || print_warning "Failed to activate pnpm via Corepack"
+    else
+      print_warning "Corepack not found; falling back to npm global install for yarn and pnpm"
+      command -v yarn &>/dev/null || npm install -g yarn || print_warning "Failed to install yarn"
+      command -v pnpm &>/dev/null || npm install -g pnpm || print_warning "Failed to install pnpm"
+    fi
+
+    command -v yarn &>/dev/null && print_success "yarn is available" || {
+      print_warning "yarn is not available"
+      failed_packages+=("yarn")
+    }
+    command -v pnpm &>/dev/null && print_success "pnpm is available" || {
+      print_warning "pnpm is not available"
+      failed_packages+=("pnpm")
+    }
+  fi
+
+  # Install bun
+  if ! command -v bun &>/dev/null; then
+    print_info "Installing bun..."
+    if curl -fsSL https://bun.sh/install | bash; then
+      print_success "Bun installed successfully"
+      export BUN_INSTALL="$HOME/.bun"
+      export PATH="$BUN_INSTALL/bin:$PATH"
+    else
+      print_error "Failed to install bun"
+      failed_packages+=("bun")
+    fi
+  else
+    print_info "Bun is already installed"
+  fi
+}
+failed_packages=()
+install_package_manager_dependencies
 
 # Install Miniconda (Python environment management)
 print_info "Installing Miniconda..."
@@ -233,88 +366,6 @@ if ! command -v conda &>/dev/null; then
 else
   print_info "Conda is already installed"
 fi
-
-# Install NVM (Node Version Manager)
-print_info "Installing NVM (Node Version Manager)..."
-if [[ ! -d "$HOME/.nvm" ]]; then
-  print_info "Downloading and installing NVM..."
-  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.4/install.sh | bash
-
-  # Source NVM for current session
-  export NVM_DIR="$HOME/.nvm"
-  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-
-  if command -v nvm &>/dev/null; then
-    print_success "NVM installed successfully"
-    print_info "Installing latest LTS Node.js..."
-    nvm install --lts
-    nvm use --lts
-    print_success "Node.js LTS installed"
-  else
-    print_warning "NVM installation may have failed. Please restart your terminal and run 'nvm --version' to verify."
-  fi
-else
-  print_info "NVM is already installed"
-fi
-
-# Install dotfiles-specific packages
-print_info "Installing dotfiles-specific packages..."
-
-# Define packages based on distribution
-dotfiles_packages=()
-case $PKG_MANAGER in
-"apt")
-  dotfiles_packages=(
-    "tldr"
-    "bat"
-    "tmux"
-    "fzf"
-    "fontconfig"
-    "ripgrep"
-    "silversearcher-ag"
-    "entr"
-  )
-  ;;
-"dnf" | "yum")
-  dotfiles_packages=(
-    "bat"
-    "neovim"
-    "tmux"
-    "fzf"
-    "fontconfig"
-    "ripgrep"
-    "the_silver_searcher"
-    "entr"
-  )
-  ;;
-"pacman")
-  dotfiles_packages=(
-    "bat"
-    "neovim"
-    "tmux"
-    "fzf"
-    "fontconfig"
-    "ripgrep"
-    "the_silver_searcher"
-    "entr"
-  )
-  ;;
-esac
-
-# Install available packages
-for package in "${dotfiles_packages[@]}"; do
-  if ! check_linux_package "$package"; then
-    print_info "Installing $package..."
-    if install_linux_package "$package"; then
-      print_success "Installed $package"
-    else
-      print_error "Failed to install $package"
-      failed_packages+=("$package")
-    fi
-  else
-    print_info "$package is already installed"
-  fi
-done
 
 # Install packages that might not be available through package managers
 print_info "Installing additional tools..."
@@ -381,21 +432,8 @@ else
   print_info "Eza is already installed"
 fi
 
-# Install bun
-print_info "Installing bun..."
-if ! command -v bun &>/dev/null; then
-  if curl -fsSL https://bun.sh/install | bash; then
-    print_success "Bun installed successfully"
-    print_info "Adding bun to PATH for current session..."
-    export BUN_INSTALL="$HOME/.bun"
-    export PATH="$BUN_INSTALL/bin:$PATH"
-  else
-    print_error "Failed to install bun"
-    failed_packages+=("bun")
-  fi
-else
-  print_info "Bun is already installed"
-fi
+# Install Node.js tooling
+install_node_ecosystem
 
 # Install thefuck (command corrector)
 if ! command -v thefuck &>/dev/null; then
@@ -435,7 +473,7 @@ print_info "📝 Additional setup notes:"
 print_info "• Miniconda has been installed and configured"
 print_info "• NVM has been installed with the latest LTS Node.js"
 print_info "• Python packages can be installed via pip3 or conda"
-print_info "• Node.js packages can be managed via npm, yarn, or the installed bun"
+print_info "• Node.js packages can be managed via npm, yarn, pnpm, or bun"
 
 # Check if any critical tools are missing
 critical_tools=("git" "zsh" "python3" "curl" "wget")
