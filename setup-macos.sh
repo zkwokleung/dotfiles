@@ -69,6 +69,70 @@ check_brew_cask() {
   brew list --cask "$1" &>/dev/null
 }
 
+# Install Homebrew and all brew-managed packages
+install_brew_dependencies() {
+  # Check if brew command exists
+  if ! command -v brew &>/dev/null; then
+    print_info "Homebrew not found, installing..."
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" || {
+      print_error "Failed to install Homebrew"
+      exit 1
+    }
+
+    # Add Homebrew to PATH for the current session
+    if [[ -f "/opt/homebrew/bin/brew" ]]; then
+      eval "$(/opt/homebrew/bin/brew shellenv)"
+      print_info "Added Homebrew (Apple Silicon) to PATH"
+    elif [[ -f "/usr/local/bin/brew" ]]; then
+      eval "$(/usr/local/bin/brew shellenv)"
+      print_info "Added Homebrew (Intel) to PATH"
+    fi
+
+    print_success "Homebrew installed successfully"
+  else
+    print_info "Homebrew found, updating..."
+    brew update || print_warning "Failed to update Homebrew"
+  fi
+
+  # Install requirements
+  print_info "Installing required packages..."
+  for package in "${req[@]}"; do
+    if ! check_brew_package "$package"; then
+      print_info "Installing $package..."
+      if brew install "$package"; then
+        print_success "Installed $package"
+      else
+        print_error "Failed to install $package"
+        failed_packages+=("$package")
+      fi
+    else
+      print_info "$package is already installed"
+    fi
+  done
+
+  # Install cask packages
+  print_info "Installing GUI applications..."
+  for cask in "${cask_req[@]}"; do
+    if ! check_brew_cask "$cask"; then
+      print_info "Installing $cask..."
+      if brew install --cask "$cask"; then
+        print_success "Installed $cask"
+      else
+        print_warning "Failed to install $cask (this is optional)"
+        failed_casks+=("$cask")
+      fi
+    else
+      print_info "$cask is already installed"
+    fi
+  done
+
+  # Rebuild zsh completions
+  print_info "Rebuilding zsh completions..."
+  if [[ -d $(brew --prefix)/share/zsh-completions ]]; then
+    print_success "Zsh completions directory found"
+  fi
+}
+
 # Install Node.js tooling in one place (nvm, yarn, pnpm, bun)
 install_node_ecosystem() {
   print_info "Installing Node.js ecosystem (nvm, yarn, pnpm, bun)..."
@@ -133,63 +197,9 @@ install_node_ecosystem() {
   fi
 }
 
-# Check if brew command exists
-if ! command -v brew &>/dev/null; then
-  print_info "Homebrew not found, installing..."
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" || {
-    print_error "Failed to install Homebrew"
-    exit 1
-  }
-
-  # Add Homebrew to PATH for the current session
-  if [[ -f "/opt/homebrew/bin/brew" ]]; then
-    eval "$(/opt/homebrew/bin/brew shellenv)"
-    print_info "Added Homebrew (Apple Silicon) to PATH"
-  elif [[ -f "/usr/local/bin/brew" ]]; then
-    eval "$(/usr/local/bin/brew shellenv)"
-    print_info "Added Homebrew (Intel) to PATH"
-  fi
-
-  print_success "Homebrew installed successfully"
-else
-  print_info "Homebrew found, updating..."
-  brew update || print_warning "Failed to update Homebrew"
-fi
-
-# Install requirements
-print_info "Installing required packages..."
 failed_packages=()
 failed_casks=()
-
-for package in "${req[@]}"; do
-  if ! check_brew_package "$package"; then
-    print_info "Installing $package..."
-    if brew install "$package"; then
-      print_success "Installed $package"
-    else
-      print_error "Failed to install $package"
-      failed_packages+=("$package")
-    fi
-  else
-    print_info "$package is already installed"
-  fi
-done
-
-# Install cask packages
-print_info "Installing GUI applications..."
-for cask in "${cask_req[@]}"; do
-  if ! check_brew_cask "$cask"; then
-    print_info "Installing $cask..."
-    if brew install --cask "$cask"; then
-      print_success "Installed $cask"
-    else
-      print_warning "Failed to install $cask (this is optional)"
-      failed_casks+=("$cask")
-    fi
-  else
-    print_info "$cask is already installed"
-  fi
-done
+install_brew_dependencies
 
 # Install Node.js tooling
 install_node_ecosystem
@@ -209,14 +219,6 @@ if [ ${#failed_casks[@]} -gt 0 ]; then
     printf "  - %s\n" "$cask"
   done
   print_info "You may need to install these manually"
-fi
-
-# Rebuild zsh completions
-if command -v brew &>/dev/null; then
-  print_info "Rebuilding zsh completions..."
-  if [[ -d $(brew --prefix)/share/zsh-completions ]]; then
-    print_success "Zsh completions directory found"
-  fi
 fi
 
 # Final instructions
