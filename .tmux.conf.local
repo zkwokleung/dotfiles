@@ -400,6 +400,13 @@ bind C-y set-window-option synchronize-panes
 # swap panes
 bind S swap-pane -U
 
+# move between sessions
+bind C-j switch-client -n
+bind C-h switch-client -p
+
+# rename session
+bind C-, command-prompt -I "#S" "rename-session '%%'"
+
 # -- tpm -----------------------------------------------------------------------
 
 # by default, launching tmux will update tpm and all plugins
