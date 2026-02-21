@@ -52,6 +52,7 @@ declare -a req=(
   "starship"
   "zoxide"
   "lazygit"
+  "gh"
 )
 
 declare -a cask_req=(
