@@ -5,6 +5,8 @@ alias ....="cd ../../.."
 alias .....="cd ../../../.."
 alias -- -="cd -"
 
+alias cd=z
+
 # Cat to Bat
 if command -v bat &>/dev/null; then
     alias cat=bat
