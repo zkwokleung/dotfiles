@@ -53,6 +53,7 @@ declare -a req=(
   "zoxide"
   "lazygit"
   "gh"
+  "luarocks"
 )
 
 declare -a cask_req=(
