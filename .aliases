@@ -18,7 +18,7 @@ if command -v eza &>/dev/null; then
     alias ll='eza -alF --icons --color=always --group-directories-first'
     alias la='eza -a --icons --color=always --group-directories-first'
     alias l='eza -F --icons --color=always --group-directories-first'
-    alias l.='eza -a | egrep "^\."'
+    alias l.='eza -a --icons --color=always --only-files --ignore-glob="[!.]?*"'
     alias ldir='eza -d */ --icons --color=always --group-directories-first'
 else
     # Detect which `ls` flavor is in use
@@ -49,6 +49,7 @@ fi
 # Misc
 alias rl="source ~/.zshrc"
 alias cls=clear
+
 # Platform-specific clipboard aliases
 if [[ "$OSTYPE" == "darwin"* ]]; then
     alias clip="tr -d '\n' | pbcopy"
@@ -64,7 +65,6 @@ elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
         alias clip="echo 'No clipboard tool available. Install xclip, wl-clipboard, or xsel.'"
     fi
 fi
-alias f=fuck
 
 # Shortcuts
 if [ -d ~/Projects ]; then
@@ -84,9 +84,15 @@ if [ -d ~/Library/CloudStorage/GoogleDrive-zkwokleung@gmail.com/My\ Drive ]; the
 fi
 
 # Grep
-alias grep='grep --color=auto'
-alias fgrep='fgrep --color=auto'
-alias egrep='egrep --color=auto'
+if command -v rg &>/dev/null; then
+    alias grep='rg'
+    alias fgrep='rg'
+    alias egrep='rg'
+else
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
 
 # * Git
 alias g=git
@@ -97,26 +103,29 @@ alias gf="git fetch"
 alias gc="git commit"
 alias gcm="git commit -m"
 alias gp="git push"
-alias gpo="git push origin"
-alias gL="git pull"
-alias glo="git pull origin"
+alias gpo="git push origin $(git branch --show-current)"
+alias gL="git pull --rebase"
+alias glo="git pull --rebase origin $(git branch --show-current)"
 alias gl="git log --graph --full-history --all --color \
           --pretty=format:'%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s'"
 
 # * Lazygit
-alias lg=lazygit
+if command -v lazygit &>/dev/null; then
+    alias lg=lazygit
+fi
 
-# * Npm
-alias n=npm
-alias nrd="npm run dev"
-alias nrb="npm run build"
-alias nrl="npm run lint"
+# * thefuck
+if command -v thefuck &>/dev/null; then
+    alias f=fuck
+fi
 
 # * Vim
-alias v=nvim
-alias vi=nvim
-alias vim=nvim
-alias v.="nvim ."
+if command -v nvim &>/dev/null; then
+    alias vim=nvim
+    alias vi=nvim
+    alias v=nvim
+    alias v.="nvim ."
+fi
 
 # * Code
 alias c="code"
