@@ -391,7 +391,7 @@ bind X confirm-before -p "kill-window #W? (y/n)" kill-window
 bind C-x confirm-before -p "kill-session #W? (y/n)" kill-session
 
 # reload configuration
-bind l source-file ~/.config/tmux/tmux.conf \; display-message "tmux.conf reloaded!"
+bind L source-file ~/.config/tmux/tmux.conf \; display-message "tmux.conf reloaded!"
 
 
 # respawn window
