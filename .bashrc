@@ -1,4 +1,5 @@
-echo "Setting up Zsh configuration..."
+# Used for interactive shells.
+
 [ -n "$PS1" ] && source ~/.bash_profile
 
 export NVM_DIR="$HOME/.nvm"

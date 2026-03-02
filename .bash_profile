@@ -94,6 +94,8 @@ else
   [ -r ~/.bash_prompt ] && [ -f ~/.bash_prompt ] && source ~/.bash_prompt
 fi
 
+eval $(thefuck --alias)
+
 # Enter tmux on start
 if command -v tmux &>/dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ] && [[ ! "$TERM_PROGRAM" == "vscode" ]]; then
   tmux new-session -A -s main

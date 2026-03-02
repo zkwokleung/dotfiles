@@ -1,2 +1,2 @@
-[ -n "$PS1" ] && source ~/.bash_profile
+# Used for login shells.
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
