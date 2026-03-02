@@ -14,7 +14,7 @@ It is optimized for personal use first, but can be reused as a base for your own
 
 ## What is in this repo
 
-- `.bash_profile`, `.bashrc`, `.zshrc`, `.zprofile`
+- `.profile`, `.shellrc`, `.bash_profile`, `.bashrc`, `.zshrc`, `.zprofile`, `.inputrc`
 - `.aliases`, `.functions`, `.exports`, `.extend`
 - `.tmux.conf.local`, `.gitmux.yaml`
 - `starship.toml`
@@ -82,7 +82,7 @@ source ~/.bashrc
 ## Default behavior and notable setup
 
 - `cd` is aliased to `z` (zoxide-based navigation)
-- interactive zsh shells source `~/.bash_profile`
+- both bash and zsh source shared environment from `~/.profile`
 - tmux auto-attaches/creates session `main` for interactive terminal shells
 - prompt uses Starship when available, with fallback prompt if missing
 - common tools are wired through aliases (`eza`, `bat`, `rg`, `nvim`, `git` helpers)

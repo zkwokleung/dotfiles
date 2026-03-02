@@ -62,3 +62,6 @@ Temporary Items
 # Test artifacts
 /tmp/dotfiles-test-*
 /tmp/dotfiles-integration-test-*
+
+# Caches
+.cache

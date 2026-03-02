@@ -1,0 +1,15 @@
+# Shared interactive shell config for bash and zsh.
+if [ -n "${DOTFILES_SHELLRC_LOADED:-}" ]; then
+  return 0 2>/dev/null || true
+fi
+export DOTFILES_SHELLRC_LOADED=1
+
+# thefuck alias.
+if command -v thefuck >/dev/null 2>&1; then
+  eval "$(thefuck --alias)"
+fi
+
+# Enter tmux on interactive terminal start.
+if command -v tmux >/dev/null 2>&1 && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ] && [[ ! "$TERM_PROGRAM" == "vscode" ]]; then
+  tmux new-session -A -s main
+fi
