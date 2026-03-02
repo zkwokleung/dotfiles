@@ -1,354 +1,158 @@
-# 🏠 zkwokleung's Dotfiles
+# dotfiles
 
-<div align="center">
+Personal shell and terminal configuration for macOS and Linux.
 
-**🚀 A modern, feature-rich dotfiles collection for macOS and Unix systems**
+This repo contains the author's day-to-day setup for:
 
-*Transform your terminal experience with carefully crafted configurations*
+- zsh/bash shell behavior
+- aliases and helper functions
+- tmux + gitmux status line setup
+- Starship prompt
+- development tool bootstrap scripts
 
-[![Tests](https://github.com/zkwokleung/dotfiles/actions/workflows/test.yml/badge.svg)](https://github.com/zkwokleung/dotfiles/actions/workflows/test.yml)
-[![macOS](https://img.shields.io/badge/macOS-000000?style=for-the-badge&logo=apple&logoColor=F0F0F0)](https://www.apple.com/macos/)
-[![Unix](https://img.shields.io/badge/Unix-FCC624?style=for-the-badge&logo=linux&logoColor=black)](https://www.kernel.org/)
-[![Zsh](https://img.shields.io/badge/Zsh-F15A24?style=for-the-badge&logo=zsh&logoColor=white)](https://www.zsh.org/)
-[![Tmux](https://img.shields.io/badge/tmux-1BB91F?style=for-the-badge&logo=tmux&logoColor=white)](https://github.com/tmux/tmux)
+It is optimized for personal use first, but can be reused as a base for your own setup.
 
-</div>
+## What is in this repo
 
----
+- `.bash_profile`, `.bashrc`, `.zshrc`, `.zprofile`
+- `.aliases`, `.functions`, `.exports`, `.extend`
+- `.tmux.conf.local`, `.gitmux.yaml`
+- `starship.toml`
+- `.gitconfig`, `.gitignore`, `.editorconfig`
+- `bootstrap.sh` (symlink/install script)
+- `setup-macos.sh` and `setup-linux.sh` (dependency installers)
+- `.vscode/settings.json` (editor quality-of-life settings)
 
-## ✨ Features
+## Supported platforms
 
-### 🎯 Core Enhancements
-- **🔄 Automatic tmux sessions** - Never lose your work again
-- **🚀 Modern Starship prompt** - Fast, customizable prompt with git integration and language detection
-- **🎨 Beautiful terminal styling** - Enhanced colors and icons with `eza`
-- **📁 Smart directory navigation** - Zoxide learns your habits for intelligent `cd` replacement
-- **⚡ Smart aliases** - 100+ time-saving command shortcuts
-- **🔍 Powerful search** - Integrated `fzf` and `ag` for lightning-fast file finding
-- **🤖 AI-powered CLI** - GitHub Copilot integration for command suggestions
+- macOS (primary)
+- Linux (apt/dnf/yum/pacman supported by setup script)
 
-### 🛠️ Development Tools
-- **📊 Git integration** - Enhanced git workflow with custom aliases and status display
-- **🔧 Multiple language support** - Optimized paths for Node.js, Python, Ruby, Flutter, and more
-- **📦 Package management** - Streamlined npm, pnpm, and bun configurations
-- **🎯 Smart navigation** - Quick access to common directories and projects
+## Quick start
 
----
+1) Clone
 
-## 📁 Project Structure
-
-```
-📦 dotfiles/
-├── 🔧 Core Configuration Files
-│   ├── .zshrc              # Zsh main configuration
-│   ├── .zprofile           # Zsh profile settings
-│   ├── .bash_profile       # Bash profile (fallback)
-│   ├── .bashrc             # Bash configuration
-│   └── .inputrc            # Readline configuration
-│
-├── ⚙️ Shell Enhancements
-│   ├── .aliases            # 100+ useful command aliases
-│   ├── .functions          # Custom shell functions
-│   ├── .exports            # Environment variables
-│   └── .bash_prompt        # Custom bash prompt
-│
-├── 🎨 Terminal Tools
-│   ├── .tmux.conf.local    # Tmux configuration
-│   ├── .gitmux.yaml        # Git status in tmux bar
-│   ├── .fzf.bash           # Fuzzy finder (Bash)
-│   └── .fzf.zsh            # Fuzzy finder (Zsh)
-│
-├── 📝 Git Configuration
-│   ├── .gitconfig          # Git global settings
-│   └── .gitignore          # Global gitignore patterns
-│
-├── 🚀 Installation Scripts
-│   ├── setup.sh             # Environment setup & dependencies
-│   ├── bootstrap.sh         # Main dotfiles installation
-│   ├── health-check.sh      # Health check and validation
-│   └── run-tests.sh         # Local test runner
-│
-├── 🧪 Testing Infrastructure  
-│   ├── tests/
-│   │   ├── test-config.sh   # Configuration validation tests
-│   │   └── test-integration.sh  # Integration tests
-│   └── .github/workflows/
-│       └── test.yml         # CI/CD pipeline configuration
-│
-└── 🎨 IDE Integration
-    ├── .vscode/             # VS Code settings
-    ├── .editorconfig        # Universal editor config
-    └── .config/nvim/        # Neovim configuration
-```
-
----
-
-## 🚀 Quick Start
-
-### Prerequisites
-- macOS or Unix-based system
-- Zsh or Bash shell
-- Internet connection for dependency installation
-
-### Installation
-
-**1. Clone the repository**
 ```bash
 git clone https://github.com/zkwokleung/dotfiles.git ~/Projects/dotfiles
 cd ~/Projects/dotfiles
 ```
 
-**2. Install dependencies (recommended)**
+2) Install dependencies
+
+On macOS:
+
 ```bash
-./setup.sh
+./setup-macos.sh
 ```
 
-**3. Apply dotfiles**
+On Linux:
+
+```bash
+./setup-linux.sh
+```
+
+3) Apply dotfiles
+
 ```bash
 ./bootstrap.sh
 ```
 
-**4. Restart your terminal or reload configuration**
-```bash
-source ~/.zshrc  # or ~/.bash_profile for bash
-```
+Use `./bootstrap.sh --force` to skip the confirmation prompt.
 
-**5. Verify installation (optional)**
-```bash
-./health-check.sh    # Run system health check
-./run-tests.sh       # Run all tests locally
-```
-
----
-
-## 📋 What Gets Installed
-
-### 🔧 Essential Tools
-| Tool | Purpose | Why You'll Love It |
-|------|---------|-------------------|
-| **starship** | Modern prompt | Fast, customizable prompt with git integration |
-| **zoxide** | Smart directory jumper | Learns your habits for intelligent `cd` replacement |
-| **eza** | Modern `ls` replacement | Beautiful file listings with icons and colors |
-| **bat** | Enhanced `cat` | Syntax highlighting and git integration |
-| **fzf** | Fuzzy finder | Lightning-fast file and command searching |
-| **thefuck** | Command corrector | Fixes your typos automatically |
-| **tmux** | Terminal multiplexer | Persistent sessions and window management |
-| **ripgrep** | Fast text search | Blazingly fast grep alternative |
-| **diff-so-fancy** | Git diff beautifier | Makes git diffs actually readable |
-
-### 🎨 Shell Enhancements
-- **Smart aliases** - `ll`, `la`, `..`, `...`, `p` (projects), `d` (downloads)
-- **Intelligent navigation** - `z` (zoxide), `zi` (interactive), `cd` overridden with smart jumping
-- **Git shortcuts** - `gs` (status), `ga` (add), `gc` (commit), `gl` (pretty log)
-- **Development helpers** - `v` (nvim), `py` (python3), quick directory navigation
-- **Fun utilities** - Weather display, ASCII art, loading animations
-
----
-
-## 🎯 Key Features Explained
-
-### 📁 Smart Directory Navigation with Zoxide
-Zoxide learns your directory usage patterns and provides intelligent jumping:
-- **Smart `cd` replacement** - Jump to frequently used directories with partial names
-- **Interactive selection** - Use `zi` to choose from a list of matching directories
-- **Frequency-based ranking** - More frequently visited directories rank higher
-- **Cross-session learning** - Builds a database of your navigation patterns
-- **Fuzzy matching** - Type partial directory names and let zoxide find the best match
-
-**Example usage:**
-```bash
-z proj          # Jump to ~/Projects (or most frequent match)
-zi doc          # Interactive selection from directories matching "doc"
-z foo bar       # Jump to directory with both "foo" and "bar" in path
-```
-
-### 🔄 Automatic Tmux Integration
-Every terminal session automatically starts or attaches to tmux, ensuring:
-- **Session persistence** - Your work survives terminal crashes
-- **Window management** - Organize your workspace efficiently
-- **Git status integration** - See repository status in your status bar
-
-### ⚡ Smart Aliases & Functions
-The dotfiles include 100+ carefully crafted aliases:
+4) Reload shell
 
 ```bash
-# Navigation
-alias ..="cd .."           # Go up one directory
-alias p="cd ~/Projects"    # Jump to projects folder
-alias dot="cd ~/dotfiles"  # Quick access to dotfiles
-
-# Zoxide smart navigation  
-alias zi="zoxide query -i" # Interactive directory selection
-# Note: z command for jumping is provided by zoxide init
-# cd is enhanced by zoxide automatically
-
-# Enhanced commands
-alias ls='eza --icons'     # Beautiful file listings
-alias cat='bat'            # Syntax highlighted file viewing
-alias grep='rg'            # Fast text searching
-
-# Git workflow
-alias gs="git status"      # Quick status check
-alias gaa="git add . && git status"  # Add all and show status
-alias gl="git log --graph --pretty"  # Beautiful git history
+source ~/.zshrc
+# or
+source ~/.bashrc
 ```
 
-### 🤖 AI-Powered CLI
-Integrated GitHub Copilot CLI for intelligent command suggestions:
+## What bootstrap does
+
+`bootstrap.sh`:
+
+- symlinks dotfiles from this repo into your home directory
+- backs up existing non-symlink files as `*.bak`
+- creates `~/.config/tmux` and links:
+  - `~/.config/tmux/tmux.conf.local`
+  - `~/.config/tmux/gitmux.conf`
+- links `starship.toml` to `~/.config/starship.toml`
+- applies git color + pager settings (diff-so-fancy if installed)
+
+## Default behavior and notable setup
+
+- `cd` is aliased to `z` (zoxide-based navigation)
+- interactive zsh shells source `~/.bash_profile`
+- tmux auto-attaches/creates session `main` for interactive terminal shells
+- prompt uses Starship when available, with fallback prompt if missing
+- common tools are wired through aliases (`eza`, `bat`, `rg`, `nvim`, `git` helpers)
+
+## Selected aliases
+
+From `.aliases`:
+
+- navigation: `..`, `...`, `p`, `dot`, `d`
+- git: `g`, `ga`, `gaa`, `gs`, `gf`, `gc`, `gcm`, `gp`, `gpo`, `gL`, `glo`, `gl`
+- editor: `v`, `vi`, `vim`, `v.`
+- shell helpers: `rl`, `cls`, `clip`
+- zoxide helpers: `zi`, `zq`, `za`, `zr`, `ze`
+
+## Selected functions
+
+From `.functions`:
+
+- `o` open current path in file manager (`open`/`xdg-open`)
+- `cdls` change directory then list contents
+- `tre` tree view with useful ignores
+- `weather`, `future-weather`, `moon-phase`
+- `ovpn <country_code>` connect to OpenVPN profile in `~/OpenVPN`
+- `cl [config]` launch Claude Code with optional profile dir
+
+## Customization
+
+Update these files directly:
+
+- aliases: `.aliases`
+- functions: `.functions`
+- environment variables / PATH: `.exports`
+- prompt: `starship.toml`
+- tmux look/behavior: `.tmux.conf.local` and `.gitmux.yaml`
+
+Then reload:
+
 ```bash
-alias gcs="gh copilot suggest"  # Get command suggestions
-alias gce="gh copilot explain"  # Explain complex commands
+source ~/.zshrc
 ```
 
-### 🎨 Enhanced Development Environment
-- **Multiple language support** - Pre-configured paths for Node.js, Python, Ruby, Flutter
-- **Package manager integration** - Optimized for npm, pnpm, yarn, and bun
-- **Smart editor integration** - NeoVim as default editor with proper PATH setup
+or
 
----
-
-## 🧪 Testing & Quality Assurance
-
-This dotfiles project includes comprehensive testing to ensure reliability and compatibility across different environments.
-
-### 🚀 CI/CD Pipeline
-[![Tests](https://github.com/zkwokleung/dotfiles/actions/workflows/test.yml/badge.svg)](https://github.com/zkwokleung/dotfiles/actions/workflows/test.yml)
-
-Every commit is automatically tested with:
-
-| Test Suite | Purpose | Platforms |
-|------------|---------|-----------|
-| **📄 Configuration Tests** | Validates syntax of all config files | Ubuntu, macOS |
-| **🚀 Integration Tests** | Tests installation and functionality | Ubuntu, macOS |
-| **🔒 Security Tests** | Checks for security vulnerabilities | Ubuntu |
-| **🏥 Health Check** | Validates post-installation system health | Ubuntu, macOS |
-| **🔄 Compatibility Tests** | Tests cross-shell compatibility | Ubuntu |
-| **📚 Documentation Tests** | Validates README and documentation | Ubuntu |
-
-### 🏃 Running Tests Locally
-
-**Run all tests:**
 ```bash
-./run-tests.sh
+source ~/.bashrc
 ```
 
-**Run specific test suites:**
+## Updating
+
+Pull latest changes and re-run bootstrap:
+
 ```bash
-./run-tests.sh --config      # Configuration validation
-./run-tests.sh --integration # Integration tests  
-./run-tests.sh --security    # Security checks
-./run-tests.sh --health      # Health check
-./run-tests.sh --compat      # Compatibility tests
-./run-tests.sh --docs        # Documentation tests
+cd ~/Projects/dotfiles
+git pull
+./bootstrap.sh --force
 ```
 
-**Individual test scripts:**
-```bash
-./tests/test-config.sh       # Configuration validation
-./tests/test-integration.sh  # Integration testing
-./health-check.sh           # System health check
-./test-status.sh            # Quick status overview
-```
+## Safety notes
 
-### 🔍 What Gets Tested
+- review scripts before running on your machine
+- bootstrap may overwrite files in `$HOME` (it creates `*.bak` for existing regular files)
+- setup scripts install many packages; trim them to your needs
 
-#### Configuration Validation
-- ✅ Shell script syntax (`bash -n`)
-- ✅ JSON syntax validation (VS Code settings)
-- ✅ YAML syntax validation (gitmux config)
-- ✅ TOML syntax validation (Starship config)
-- ✅ Git configuration syntax
-- ✅ Tmux configuration format
-- ✅ File existence and permissions
+## Troubleshooting
 
-#### Integration Testing
-- ✅ Bootstrap script functionality
-- ✅ Configuration file installation
-- ✅ Cross-platform compatibility (macOS/Linux)
-- ✅ File permissions after installation
-- ✅ Shell integration (aliases, functions)
-- ✅ Tool configuration (tmux, VS Code, etc.)
-- ✅ Idempotency (safe to run multiple times)
+- `command not found` after setup: restart terminal or source shell config again
+- Starship not loading: ensure `starship` is installed and `~/.config/starship.toml` exists
+- tmux not auto-starting: check `tmux` exists and terminal is not already inside tmux
+- zoxide navigation oddities: remember `cd` is aliased to `z`; use `builtin cd` if needed
 
-#### Security & Safety
-- ✅ No hardcoded secrets or passwords
-- ✅ Proper file permissions
-- ✅ No unsafe operations (like `rm -rf /`)
-- ✅ Script integrity validation
+## Credits
 
-#### Health Monitoring
-- ✅ Tool installation verification
-- ✅ Configuration file validation
-- ✅ Shell integration testing
-- ✅ Performance checks
-- ✅ Environment compatibility
-
-### 📊 Test Coverage
-
-The test suite covers:
-- **100+ configuration files** across all dotfile categories
-- **Cross-platform compatibility** (macOS, Ubuntu, other Unix systems)
-- **Multiple shell environments** (Bash, Zsh)
-- **Security best practices** and vulnerability scanning
-- **Performance validation** for critical operations
-
----
-
-## 🔧 Customization
-
-### Adding Your Own Aliases
-Edit `.aliases` file:
-```bash
-# Add your custom aliases
-alias myalias="your command here"
-```
-
-### Custom Functions
-Add functions to `.functions`:
-```bash
-function myfunction() {
-    # Your custom function
-    echo "Hello, World!"
-}
-```
-
-### Environment Variables
-Modify `.exports` for custom environment setup:
-```bash
-export MY_CUSTOM_VAR="value"
-export PATH="$PATH:/my/custom/path"
-```
-
----
-
-## ⚠️ Important Notes
-
-- **Backup first**: This setup may overwrite existing configurations
-- **macOS optimized**: Primarily tested on macOS, may need adjustments for other Unix systems
-- **Personal preferences**: These are personal configurations - adapt them to your workflow
-- **Dependencies**: Run `setup.sh` for the best experience
-
----
-
-## 🤝 Contributing
-
-Found a bug or have a suggestion? Feel free to:
-1. Open an issue
-2. Submit a pull request
-3. Fork and customize for your needs
-
----
-
-## 📄 License
-
-This project is based on [Mathias Bynens' dotfiles](https://github.com/mathiasbynens/dotfiles) with personal modifications.
-
----
-
-<div align="center">
-
-**Happy coding! 🚀**
-
-*Made with ❤️ for productive terminal workflows*
-
-</div>
+Originally based on [mathiasbynens/dotfiles](https://github.com/mathiasbynens/dotfiles), then heavily customized for this workflow.
