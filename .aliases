@@ -103,9 +103,9 @@ alias gf="git fetch"
 alias gc="git commit"
 alias gcm="git commit -m"
 alias gp="git push"
-alias gpo="git push origin $(git branch --show-current)"
+alias gpo='git push origin $(git branch --show-current)'
 alias gL="git pull --rebase"
-alias glo="git pull --rebase origin $(git branch --show-current)"
+alias glo='git pull --rebase origin $(git branch --show-current)'
 alias gl="git log --graph --full-history --all --color \
           --pretty=format:'%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s'"
 
