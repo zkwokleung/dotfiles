@@ -1,10 +1,5 @@
 # Shared login environment for bash/zsh.
 
-if [ -n "${DOTFILES_PROFILE_LOADED:-}" ]; then
-    return 0 2>/dev/null || true
-fi
-export DOTFILES_PROFILE_LOADED=1
-
 # Platform-specific environment.
 case "$OSTYPE" in
 darwin*)
