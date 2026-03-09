@@ -385,14 +385,16 @@ bind C-a send-prefix
 # bind c new-window -c '#{pane_current_path}' #!important
 
 # kill window
-bind X confirm-before -p "kill-window #W? (y/n)" kill-window
+bind C-x confirm-before -p "kill-window #W? (y/n)" kill-window
 
-# kill window
-bind C-x confirm-before -p "kill-session #W? (y/n)" kill-session
+# kill session
+bind C-X confirm-before -p "kill-session #S? (y/n)" kill-session
+
+# kill other panes
+bind o confirm-before -p "kill other panes? (y/n)" "kill-pane -a"
 
 # reload configuration
-bind L source-file ~/.config/tmux/tmux.conf \; display-message "tmux.conf reloaded!"
-
+bind C-m source-file ~/.config/tmux/tmux.conf \; display-message "tmux.conf reloaded!"
 
 # respawn window
 bind R respawn-window -k
@@ -405,11 +407,14 @@ bind r respawn-pane -k
 bind C-y set-window-option synchronize-panes
 
 # swap panes
-bind S swap-pane -U
+# bind -r C-[ swap-pane -L
+# bind -r C-] swap-pane -R
+bind -r C-d swap-pane -D
+bind -r C-u swap-pane -U
 
 # move between sessions
-bind C-j switch-client -n
-bind C-k switch-client -p
+bind -r C-j switch-client -n
+bind -r C-k switch-client -p
 
 # rename session
 bind C-, command-prompt -I "#S" "rename-session '%%'"
