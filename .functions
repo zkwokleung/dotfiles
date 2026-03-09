@@ -23,9 +23,6 @@ function cdf() { # short for `cdfinder`
     fi
 }
 
-# Change working directory and list contents
-function cdls() { cd "$@" && ls; }
-
 # Open current working directory in file manager or optionally open the given location
 function o() {
     if [[ "$OSTYPE" == "darwin"* ]]; then
@@ -107,15 +104,6 @@ function future-weather() {
     done
 }
 
-function moon-phase() {
-    while true;
-    do
-        clear
-        curl wttr.in/moon | head -24
-        sleep 3600
-    done
-}
-
 function quote-display() {
     while true;
     do
@@ -181,16 +169,4 @@ function ovpn() {
 
     echo "Connecting to VPN using: $(basename "$ovpn_file")"
     cd "$ovpn_dir" && sudo openvpn "$ovpn_file"
-}
-
-# Claude Code functions
-function cl() {
-    if [ $# -eq 0 ]; then
-        claude
-    else
-        local config_name="$1"
-        export CLAUDE_CONFIG_DIR="$HOME/.claude-${config_name}"
-        claude
-        unset CLAUDE_CONFIG_DIR
-    fi
 }

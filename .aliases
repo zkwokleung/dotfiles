@@ -3,9 +3,11 @@ alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
 alias .....="cd ../../../.."
-alias -- -="cd -"
+alias -- -="cd - && pwd"
 
-alias cd=z
+if command -v z &>/dev/null; then
+  alias cd=z
+fi
 
 # Cat to Bat
 if command -v bat &>/dev/null; then
