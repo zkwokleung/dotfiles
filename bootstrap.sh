@@ -62,6 +62,25 @@ function doIt() {
     printf "\e[32m%s\e[0m\n" "Linked $src -> $dest"
   done
 
+  # Symlink opencode configuration directory to ~/.config/opencode
+  if [ -e opencode ]; then
+    dest="$HOME/.config/opencode"
+    mkdir -p "$HOME/.config" || {
+      printf "\e[31m%s\e[0m\n" "Error: Failed to create ~/.config directory"
+      exit 1
+    }
+    if [ -e "$dest" ] && [ ! -L "$dest" ]; then
+      mv "$dest" "$dest.bak"
+      printf "\e[33m%s\e[0m\n" "Backed up $dest to $dest.bak"
+    elif [ -L "$dest" ]; then
+      rm "$dest"
+    fi
+    ln -sfn "$PWD/opencode" "$dest"
+    printf "\e[32m%s\e[0m\n" "Linked opencode -> $dest"
+  else
+    printf "\e[33m%s\e[0m\n" "# opencode not found, skipping opencode configuration"
+  fi
+
   # Symlink Starship configuration
   if [ -f starship.toml ]; then
     dest="$HOME/.config/starship.toml"
