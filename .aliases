@@ -131,6 +131,9 @@ fi
 alias c="code"
 alias c.="code ."
 
+# * OpenCode
+alias oc=opencode
+
 # * Python
 alias py=python3
 alias python=python3
