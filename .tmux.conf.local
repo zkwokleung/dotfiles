@@ -412,6 +412,10 @@ bind C-y set-window-option synchronize-panes
 bind -r C-d swap-pane -D
 bind -r C-u swap-pane -U
 
+# move current window left / right in the window list (and follow it)
+bind -r M-h swap-window -t -1 \; select-window -t -1
+bind -r M-l swap-window -t +1 \; select-window -t +1
+
 # move between sessions
 bind -r C-j switch-client -n
 bind -r C-k switch-client -p
