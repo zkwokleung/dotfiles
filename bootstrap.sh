@@ -11,7 +11,7 @@ function doIt() {
   # List of files/directories to exclude from symlinking
   EXCLUDES=(
     "." ".." ".git" ".DS_Store" ".osx" "bootstrap.sh" "README.md" "LICENSE-MIT.txt"
-    ".tmux.conf.local" ".gitmux.yaml" "starship.toml" ".vscode" ".config" ".trunk"
+    ".tmux.conf.local" ".gitmux.yaml" "starship.toml" ".vscode" ".config" ".trunk" "thefuck"
     "setup.sh" "health-check.sh" "setup-*.sh"
   )
 
@@ -79,6 +79,25 @@ function doIt() {
     printf "\e[32m%s\e[0m\n" "Linked opencode -> $dest"
   else
     printf "\e[33m%s\e[0m\n" "# opencode not found, skipping opencode configuration"
+  fi
+
+  # Symlink thefuck configuration directory to ~/.config/thefuck
+  if [ -e thefuck ]; then
+    dest="$HOME/.config/thefuck"
+    mkdir -p "$HOME/.config" || {
+      printf "\e[31m%s\e[0m\n" "Error: Failed to create ~/.config directory"
+      exit 1
+    }
+    if [ -e "$dest" ] && [ ! -L "$dest" ]; then
+      mv "$dest" "$dest.bak"
+      printf "\e[33m%s\e[0m\n" "Backed up $dest to $dest.bak"
+    elif [ -L "$dest" ]; then
+      rm "$dest"
+    fi
+    ln -sfn "$PWD/thefuck" "$dest"
+    printf "\e[32m%s\e[0m\n" "Linked thefuck -> $dest"
+  else
+    printf "\e[33m%s\e[0m\n" "# thefuck not found, skipping thefuck configuration"
   fi
 
   # Symlink Starship configuration

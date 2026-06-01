@@ -18,6 +18,7 @@ It is optimized for personal use first, but can be reused as a base for your own
 - `.aliases`, `.functions`, `.exports`, `.extend`
 - `.tmux.conf.local`, `.gitmux.yaml`
 - `starship.toml`
+- `thefuck/settings.py` and `thefuck/rules/*.py`
 - `.gitconfig`, `.gitignore`, `.editorconfig`
 - `bootstrap.sh` (symlink/install script)
 - `setup-macos.sh` and `setup-linux.sh` (dependency installers)
@@ -76,6 +77,7 @@ source ~/.bashrc
 - creates `~/.config/tmux` and links:
   - `~/.config/tmux/tmux.conf.local`
   - `~/.config/tmux/gitmux.conf`
+- links `thefuck/` to `~/.config/thefuck`
 - links `starship.toml` to `~/.config/starship.toml`
 - applies git color + pager settings (diff-so-fancy if installed)
 
@@ -117,6 +119,7 @@ Update these files directly:
 - environment variables / PATH: `.exports`
 - prompt: `starship.toml`
 - tmux look/behavior: `.tmux.conf.local` and `.gitmux.yaml`
+- thefuck settings/rules: `thefuck/settings.py` and `thefuck/rules/*.py`
 
 Then reload:
 
