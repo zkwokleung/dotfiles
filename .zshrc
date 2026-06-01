@@ -50,3 +50,5 @@ fi
 
 # Shared interactive setup.
 [ -f ~/.shellrc ] && source ~/.shellrc
+
+eval $(thefuck --alias)
