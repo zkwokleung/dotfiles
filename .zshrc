@@ -2,6 +2,8 @@
 
 [[ -o interactive ]] || return
 
+autoload -Uz compinit && compinit
+
 # zsh-completions path.
 if command -v brew >/dev/null 2>&1; then
   export FPATH="$(brew --prefix)/share/zsh-completions:$FPATH"
